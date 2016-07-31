@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 import net.codejava.spring.model.Contact;
 
+import net.codejava.spring.model.Ticket;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -26,19 +27,19 @@ public class ContactDAOImpl implements ContactDAO {
 	}
 
 	@Override
-	public void saveOrUpdate(Contact contact) {
-		if (contact.getId() > 0) {
+	public void saveOrUpdate(Ticket ticket) {
+		if (ticket.getId() > 0) {
 			// update
-			String sql = "UPDATE tickets SET name=?, email=?, address=?, "
-						+ "telephone=? WHERE ID=?";
-			jdbcTemplate.update(sql, contact.getName(), contact.getEmail(),
-					contact.getAddress(), contact.getTelephone(), contact.getId());
+			String sql = "UPDATE tickets SET TICKET_NO=?, TICKET_TITLE=?, TICKET_OWNER=?, "
+						+ "CLUSTER=? WHERE ID=?";
+			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
+					ticket.getOwner(), ticket.getCluster(), ticket.getId());
 		} else {
 			// insert
-			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,CLUSTER)"
+			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER)"
 						+ " VALUES (?, ?, ?, ?)";
-			jdbcTemplate.update(sql, contact.getName(), contact.getEmail(),
-					contact.getAddress(), contact.getTelephone());
+			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
+					ticket.getOwner(), ticket.getCluster());
 		}
 		
 	}
@@ -50,26 +51,26 @@ public class ContactDAOImpl implements ContactDAO {
 	}
 
 	@Override
-	public List<Contact> list() {
+	public List<Ticket> list() {
 		String sql = "SELECT ID,TICKET_NO,TICKET_TITLE,CLUSTER,TICKET_OWNER FROM tickets";
-		List<Contact> listContact = jdbcTemplate.query(sql, new RowMapper<Contact>() {
+		List<Ticket> listTicket = jdbcTemplate.query(sql, new RowMapper<Ticket>() {
 
 			@Override
-			public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Contact aContact = new Contact();
+			public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Ticket aTicket = new Ticket();
 	
-				aContact.setId(rs.getInt("ID"));
-				aContact.setName(rs.getString("name"));
-				aContact.setEmail(rs.getString("email"));
-				aContact.setAddress(rs.getString("address"));
-				aContact.setTelephone(rs.getString("telephone"));
+				aTicket.setId(rs.getInt("ID"));
+				aTicket.setNumber(rs.getString("TICKET_NO"));
+				aTicket.setTitle(rs.getString("TICKET_TITLE"));
+				aTicket.setCluster(rs.getString("CLUSTER"));
+				aTicket.setOwner(rs.getString("TICKET_OWNER"));
 				
-				return aContact;
+				return aTicket;
 			}
 			
 		});
 		
-		return listContact;
+		return listTicket;
 	}
 
 	@Override

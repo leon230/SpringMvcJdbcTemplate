@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import net.codejava.spring.dao.ContactDAO;
 import net.codejava.spring.model.Contact;
 
+import net.codejava.spring.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,24 +30,24 @@ public class HomeController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView listContact(ModelAndView model) throws IOException{
-		List<Contact> listContact = contactDAO.list();
-		model.addObject("listContact", listContact);
+		List<Ticket> listContact = contactDAO.list();
+		model.addObject("listTicket", listContact);
 		model.setViewName("home");
 		
 		return model;
 	}
 	
 	@RequestMapping(value = "/newTicket", method = RequestMethod.GET)
-	public ModelAndView newContact(ModelAndView model) {
-		Contact newContact = new Contact();
-		model.addObject("contact", newContact);
+	public ModelAndView newTicket(ModelAndView model) {
+		Ticket newTicket = new Ticket();
+		model.addObject("ticket", newTicket);
 		model.setViewName("TicketForm");
 		return model;
 	}
 	
 	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
-	public ModelAndView saveContact(@ModelAttribute Contact contact) {
-		contactDAO.saveOrUpdate(contact);		
+	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
+		contactDAO.saveOrUpdate(ticket);
 		return new ModelAndView("redirect:/");
 	}
 	

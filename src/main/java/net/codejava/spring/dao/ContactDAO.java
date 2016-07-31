@@ -3,6 +3,7 @@ package net.codejava.spring.dao;
 import java.util.List;
 
 import net.codejava.spring.model.Contact;
+import net.codejava.spring.model.Ticket;
 
 /**
  * Defines DAO operations for the contact model.
@@ -11,11 +12,11 @@ import net.codejava.spring.model.Contact;
  */
 public interface ContactDAO {
 	
-	public void saveOrUpdate(Contact contact);
+	public void saveOrUpdate(Ticket ticket);
 	
 	public void delete(int contactId);
 	
 	public Contact get(int contactId);
 	
-	public List<Contact> list();
+	public List<Ticket> list();
 }
