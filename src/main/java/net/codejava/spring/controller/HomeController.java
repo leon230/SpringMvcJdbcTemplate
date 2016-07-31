@@ -58,12 +58,12 @@ public class HomeController {
 		return new ModelAndView("redirect:/");
 	}
 	
-	@RequestMapping(value = "/editContact", method = RequestMethod.GET)
-	public ModelAndView editContact(HttpServletRequest request) {
-		int contactId = Integer.parseInt(request.getParameter("id"));
-		Contact contact = contactDAO.get(contactId);
+	@RequestMapping(value = "/editTicket", method = RequestMethod.GET)
+	public ModelAndView editTicket(HttpServletRequest request) {
+		int ticketId = Integer.parseInt(request.getParameter("id"));
+		Ticket ticket = contactDAO.get(ticketId);
 		ModelAndView model = new ModelAndView("TicketForm");
-		model.addObject("contact", contact);
+		model.addObject("ticket", ticket);
 		
 		return model;
 	}

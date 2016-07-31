@@ -16,7 +16,7 @@ public interface ContactDAO {
 	
 	public void delete(int contactId);
 	
-	public Contact get(int contactId);
+	public Ticket get(int ticketId);
 	
 	public List<Ticket> list();
 }

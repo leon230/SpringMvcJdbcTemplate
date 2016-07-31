@@ -74,21 +74,21 @@ public class ContactDAOImpl implements ContactDAO {
 	}
 
 	@Override
-	public Contact get(int contactId) {
-		String sql = "SELECT * FROM tickets WHERE ID=" + contactId;
-		return jdbcTemplate.query(sql, new ResultSetExtractor<Contact>() {
+	public Ticket get(int ticketId) {
+		String sql = "SELECT * FROM tickets WHERE ID=" + ticketId;
+		return jdbcTemplate.query(sql, new ResultSetExtractor<Ticket>() {
 
 			@Override
-			public Contact extractData(ResultSet rs) throws SQLException,
+			public Ticket extractData(ResultSet rs) throws SQLException,
 					DataAccessException {
 				if (rs.next()) {
-					Contact contact = new Contact();
-					contact.setId(rs.getInt("ID"));
-					contact.setName(rs.getString("name"));
-					contact.setEmail(rs.getString("email"));
-					contact.setAddress(rs.getString("address"));
-					contact.setTelephone(rs.getString("telephone"));
-					return contact;
+					Ticket ticket = new Ticket();
+					ticket.setId(rs.getInt("ID"));
+					ticket.setNumber(rs.getString("TICKET_NO"));
+					ticket.setTitle(rs.getString("TICKET_TITLE"));
+					ticket.setOwner(rs.getString("TICKET_OWNER"));
+					ticket.setCluster(rs.getString("CLUSTER"));
+					return ticket;
 				}
 				
 				return null;

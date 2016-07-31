@@ -31,7 +31,7 @@
 					<td>${ticket.owner}</td>
 					<td>${ticket.cluster}</td>
 					<td>
-						<a href="editContact?id=${ticket.id}">Edit</a>
+						<a href="editTicket?id=${ticket.id}">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="deleteContact?id=${contact.id}">Delete</a>
 					</td>
