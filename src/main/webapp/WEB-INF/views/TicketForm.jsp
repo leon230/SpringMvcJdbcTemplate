@@ -12,11 +12,13 @@
 	<div align="center">
 		<h1>New/Edit Ticket</h1>
 		<form:form action="saveTicket" method="post" modelAttribute="ticket">
+		<form:errors path="*" cssClass="errorblock" element="div"/>
 		<table>
 			<form:hidden path="id"/>
 			<tr>
 				<td>Number:</td>
 				<td><form:input path="number" /></td>
+				<td><form:errors path="number" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Title:</td>

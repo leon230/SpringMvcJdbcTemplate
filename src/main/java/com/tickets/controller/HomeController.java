@@ -1,10 +1,11 @@
-package net.codejava.spring.controller;
+package com.tickets.controller;
 
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import net.codejava.spring.dao.TicketDAO;
-import net.codejava.spring.model.Ticket;
+
+import com.tickets.dao.TicketDAO;
+import com.tickets.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

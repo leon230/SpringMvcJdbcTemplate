@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import com.tickets.dao.TicketDAOImpl;
 import com.tickets.dao.TicketDAO;
 
+import com.tickets.validator.NewTicketValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -48,4 +49,5 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public TicketDAO getTicketDAO() {
 		return new TicketDAOImpl(getDataSource());
 	}
+
 }
