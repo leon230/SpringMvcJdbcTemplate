@@ -1,9 +1,9 @@
-package net.codejava.spring.config;
+package com.tickets.config;
 
 import javax.sql.DataSource;
 
-import net.codejava.spring.dao.TicketDAO;
-import net.codejava.spring.dao.TicketDAOImpl;
+import com.tickets.dao.TicketDAOImpl;
+import com.tickets.dao.TicketDAO;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages="net.codejava.spring")
+@ComponentScan(basePackages="com.tickets")
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 

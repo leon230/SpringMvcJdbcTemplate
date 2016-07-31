@@ -1,4 +1,4 @@
-package net.codejava.spring.model;
+package com.tickets.model;
 
 /**
  * Created by Leon on 2016-07-31.
