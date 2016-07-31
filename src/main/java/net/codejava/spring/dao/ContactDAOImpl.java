@@ -15,7 +15,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 /**
  * An implementation of the ContactDAO interface.
- * @author www.codejava.net
  *
  */
 public class ContactDAOImpl implements ContactDAO {
