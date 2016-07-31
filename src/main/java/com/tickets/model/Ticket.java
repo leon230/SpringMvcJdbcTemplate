@@ -1,10 +1,14 @@
 package com.tickets.model;
 
+
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by Leon on 2016-07-31.
  */
 public class Ticket {
     private int id;
+    @NotNull
     private String number;
     private String title;
     private String owner;

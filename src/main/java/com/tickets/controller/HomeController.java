@@ -3,11 +3,12 @@ package com.tickets.controller;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.validation.Valid;
 import com.tickets.dao.TicketDAO;
 import com.tickets.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,12 +41,25 @@ public class HomeController {
 		model.setViewName("TicketForm");
 		return model;
 	}
+
+
 	
-	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
-	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
-		ticketDAO.saveOrUpdate(ticket);
-		return new ModelAndView("redirect:/");
-	}
+//	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
+//	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
+//		ticketDAO.saveOrUpdate(ticket);
+//		return new ModelAndView("redirect:/");
+//	}
+    @RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
+    public String CheckForm(@Valid Ticket ticket, BindingResult result) {
+        if (result.hasErrors()) {
+            return "TicketForm";
+        }
+        else {
+			ticketDAO.saveOrUpdate(ticket);
+            return "redirect:/";
+        }
+		//return "redirect:/";
+    }
 	
 	@RequestMapping(value = "/deleteTicket", method = RequestMethod.GET)
 	public ModelAndView deleteTicket(HttpServletRequest request) {

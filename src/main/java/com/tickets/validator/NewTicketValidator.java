@@ -1,9 +1,9 @@
 package com.tickets.validator;
 
+import com.tickets.model.Ticket;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import sun.security.krb5.internal.Ticket;
 
 /**
  * Created by Leon on 2016-07-31.
