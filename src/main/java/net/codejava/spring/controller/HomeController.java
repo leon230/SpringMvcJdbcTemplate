@@ -2,12 +2,8 @@ package net.codejava.spring.controller;
 
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
-import net.codejava.spring.dao.ContactDAO;
-import net.codejava.spring.model.Contact;
-
+import net.codejava.spring.dao.TicketDAO;
 import net.codejava.spring.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,20 +14,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This controller routes accesses to the application to the appropriate
- * hanlder methods. 
- * @author www.codejava.net
+ * hanlder methods.
  *
  */
 @Controller
 public class HomeController {
 
 	@Autowired
-	private ContactDAO contactDAO;
+	private TicketDAO ticketDAO;
 	
 	@RequestMapping(value="/")
-	public ModelAndView listContact(ModelAndView model) throws IOException{
-		List<Ticket> listContact = contactDAO.list();
-		model.addObject("listTicket", listContact);
+	public ModelAndView listTicket(ModelAndView model) throws IOException{
+		List<Ticket> listTicket = ticketDAO.list();
+		model.addObject("listTicket", listTicket);
 		model.setViewName("home");
 		
 		return model;
@@ -47,21 +42,21 @@ public class HomeController {
 	
 	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
 	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
-		contactDAO.saveOrUpdate(ticket);
+		ticketDAO.saveOrUpdate(ticket);
 		return new ModelAndView("redirect:/");
 	}
 	
-	@RequestMapping(value = "/deleteContact", method = RequestMethod.GET)
-	public ModelAndView deleteContact(HttpServletRequest request) {
-		int contactId = Integer.parseInt(request.getParameter("id"));
-		contactDAO.delete(contactId);
+	@RequestMapping(value = "/deleteTicket", method = RequestMethod.GET)
+	public ModelAndView deleteTicket(HttpServletRequest request) {
+		int ticketId = Integer.parseInt(request.getParameter("id"));
+		ticketDAO.delete(ticketId);
 		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(value = "/editTicket", method = RequestMethod.GET)
 	public ModelAndView editTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
-		Ticket ticket = contactDAO.get(ticketId);
+		Ticket ticket = ticketDAO.get(ticketId);
 		ModelAndView model = new ModelAndView("TicketForm");
 		model.addObject("ticket", ticket);
 		

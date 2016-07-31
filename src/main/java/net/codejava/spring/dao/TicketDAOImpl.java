@@ -3,11 +3,7 @@ package net.codejava.spring.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.sql.DataSource;
-
-import net.codejava.spring.model.Contact;
-
 import net.codejava.spring.model.Ticket;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,14 +11,14 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
- * An implementation of the ContactDAO interface.
+ * An implementation of the TicketDAO interface.
  *
  */
-public class ContactDAOImpl implements ContactDAO {
+public class TicketDAOImpl implements TicketDAO {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	public ContactDAOImpl(DataSource dataSource) {
+	public TicketDAOImpl(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
@@ -45,9 +41,9 @@ public class ContactDAOImpl implements ContactDAO {
 	}
 
 	@Override
-	public void delete(int contactId) {
+	public void delete(int ticketId) {
 		String sql = "DELETE FROM tickets WHERE ID=?";
-		jdbcTemplate.update(sql, contactId);
+		jdbcTemplate.update(sql, ticketId);
 	}
 
 	@Override

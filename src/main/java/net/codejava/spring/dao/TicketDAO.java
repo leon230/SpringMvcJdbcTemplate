@@ -1,20 +1,17 @@
 package net.codejava.spring.dao;
 
 import java.util.List;
-
-import net.codejava.spring.model.Contact;
 import net.codejava.spring.model.Ticket;
 
 /**
  * Defines DAO operations for the contact model.
- * @author www.codejava.net
  *
  */
-public interface ContactDAO {
+public interface TicketDAO {
 	
 	public void saveOrUpdate(Ticket ticket);
 	
-	public void delete(int contactId);
+	public void delete(int ticketId);
 	
 	public Ticket get(int ticketId);
 	

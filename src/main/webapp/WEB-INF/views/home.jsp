@@ -33,7 +33,7 @@
 					<td>
 						<a href="editTicket?id=${ticket.id}">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="deleteContact?id=${contact.id}">Delete</a>
+						<a href="deleteTicket?id=${ticket.id}">Delete</a>
 					</td>
 							
 	        	</tr>

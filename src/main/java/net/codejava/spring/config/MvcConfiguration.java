@@ -2,8 +2,8 @@ package net.codejava.spring.config;
 
 import javax.sql.DataSource;
 
-import net.codejava.spring.dao.ContactDAO;
-import net.codejava.spring.dao.ContactDAOImpl;
+import net.codejava.spring.dao.TicketDAO;
+import net.codejava.spring.dao.TicketDAOImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -45,7 +45,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	}
 	
 	@Bean
-	public ContactDAO getContactDAO() {
-		return new ContactDAOImpl(getDataSource());
+	public TicketDAO getTicketDAO() {
+		return new TicketDAOImpl(getDataSource());
 	}
 }
