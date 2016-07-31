@@ -36,15 +36,15 @@ public class HomeController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/newContact", method = RequestMethod.GET)
+	@RequestMapping(value = "/newTicket", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
 		Contact newContact = new Contact();
 		model.addObject("contact", newContact);
-		model.setViewName("ContactForm");
+		model.setViewName("TicketForm");
 		return model;
 	}
 	
-	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
 	public ModelAndView saveContact(@ModelAttribute Contact contact) {
 		contactDAO.saveOrUpdate(contact);		
 		return new ModelAndView("redirect:/");
@@ -61,7 +61,7 @@ public class HomeController {
 	public ModelAndView editContact(HttpServletRequest request) {
 		int contactId = Integer.parseInt(request.getParameter("id"));
 		Contact contact = contactDAO.get(contactId);
-		ModelAndView model = new ModelAndView("ContactForm");
+		ModelAndView model = new ModelAndView("TicketForm");
 		model.addObject("contact", contact);
 		
 		return model;

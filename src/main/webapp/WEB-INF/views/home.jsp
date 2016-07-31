@@ -6,14 +6,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Contact Manager Home</title>
+        <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
+        <title>Ticket Manager Home</title>
     </head>
     <body>
     	<div align="center">
 	        <h1>Contact List</h1>
-	        <h3><a href="newContact">New Ticket</a></h3>
+	        <h3><a href="newTicket">New Ticket</a></h3>
 	        <table border="1">
 	        	<th>No</th>
+	        	<th>ID</th>
 	        	<th>Name</th>
 	        	<th>Email</th>
 	        	<th>Address</th>
@@ -23,6 +25,7 @@
 				<c:forEach var="contact" items="${listContact}" varStatus="status">
 	        	<tr>
 	        		<td>${status.index + 1}</td>
+	        		<td>${contact.id}</td>
 					<td>${contact.name}</td>
 					<td>${contact.email}</td>
 					<td>${contact.address}</td>

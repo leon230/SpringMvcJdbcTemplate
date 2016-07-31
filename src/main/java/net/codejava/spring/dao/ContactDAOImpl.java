@@ -29,13 +29,13 @@ public class ContactDAOImpl implements ContactDAO {
 	public void saveOrUpdate(Contact contact) {
 		if (contact.getId() > 0) {
 			// update
-			String sql = "UPDATE contact SET name=?, email=?, address=?, "
-						+ "telephone=? WHERE contact_id=?";
+			String sql = "UPDATE tickets SET name=?, email=?, address=?, "
+						+ "telephone=? WHERE ID=?";
 			jdbcTemplate.update(sql, contact.getName(), contact.getEmail(),
 					contact.getAddress(), contact.getTelephone(), contact.getId());
 		} else {
 			// insert
-			String sql = "INSERT INTO contact (name, email, address, telephone)"
+			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,CLUSTER)"
 						+ " VALUES (?, ?, ?, ?)";
 			jdbcTemplate.update(sql, contact.getName(), contact.getEmail(),
 					contact.getAddress(), contact.getTelephone());
@@ -45,20 +45,20 @@ public class ContactDAOImpl implements ContactDAO {
 
 	@Override
 	public void delete(int contactId) {
-		String sql = "DELETE FROM contact WHERE contact_id=?";
+		String sql = "DELETE FROM tickets WHERE ID=?";
 		jdbcTemplate.update(sql, contactId);
 	}
 
 	@Override
 	public List<Contact> list() {
-		String sql = "SELECT * FROM contact";
+		String sql = "SELECT ID,TICKET_NO,TICKET_TITLE,CLUSTER,TICKET_OWNER FROM tickets";
 		List<Contact> listContact = jdbcTemplate.query(sql, new RowMapper<Contact>() {
 
 			@Override
 			public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Contact aContact = new Contact();
 	
-				aContact.setId(rs.getInt("contact_id"));
+				aContact.setId(rs.getInt("ID"));
 				aContact.setName(rs.getString("name"));
 				aContact.setEmail(rs.getString("email"));
 				aContact.setAddress(rs.getString("address"));
@@ -74,7 +74,7 @@ public class ContactDAOImpl implements ContactDAO {
 
 	@Override
 	public Contact get(int contactId) {
-		String sql = "SELECT * FROM contact WHERE contact_id=" + contactId;
+		String sql = "SELECT * FROM tickets WHERE ID=" + contactId;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Contact>() {
 
 			@Override
@@ -82,7 +82,7 @@ public class ContactDAOImpl implements ContactDAO {
 					DataAccessException {
 				if (rs.next()) {
 					Contact contact = new Contact();
-					contact.setId(rs.getInt("contact_id"));
+					contact.setId(rs.getInt("ID"));
 					contact.setName(rs.getString("name"));
 					contact.setEmail(rs.getString("email"));
 					contact.setAddress(rs.getString("address"));
