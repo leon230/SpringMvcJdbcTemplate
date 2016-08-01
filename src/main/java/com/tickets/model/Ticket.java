@@ -1,7 +1,10 @@
 package com.tickets.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by Leon on 2016-07-31.

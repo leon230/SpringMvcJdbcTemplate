@@ -13,7 +13,7 @@
     	<div align="center">
 	        <h1>Ticket List</h1>
 	        <h3><a href="newTicket">New Ticket</a></h3>
-	        <table border="1">
+	        <table class="mainTable">
 	        	<th>No</th>
 	        	<th>ID</th>
 	        	<th>Ticket number</th>
