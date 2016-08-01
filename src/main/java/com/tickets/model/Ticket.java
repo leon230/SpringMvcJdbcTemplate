@@ -7,10 +7,13 @@ import javax.validation.constraints.NotNull;
  * Created by Leon on 2016-07-31.
  */
 public class Ticket {
+    @NotNull
     private int id;
     @NotNull
     private String number;
+    @NotNull
     private String title;
+    @NotNull
     private String owner;
     private String cluster;
 
