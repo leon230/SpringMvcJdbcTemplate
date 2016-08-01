@@ -33,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class HomeController {
 
+
 	@Autowired
 	private TicketDAO ticketDAO;
 	@Autowired
@@ -42,7 +43,7 @@ public class HomeController {
 //	protected void initBinder(WebDataBinder binder) {
 //		binder.setValidator(userFormValidator);
 //	}
-	@InitBinder("TicketForm")
+	@InitBinder("ticket")
 	public void initBinder(WebDataBinder binder){
 		binder.setValidator(userFormValidator);
 	}

@@ -24,7 +24,7 @@ public class NewTicketValidator implements Validator {
 
         Ticket user = (Ticket) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "number", "NotEmpty.TicketForm.number");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "number", "NotEmpty.TicketForm.number");
 
         if(user.getNumber()==null || user.getNumber()==""){
             errors.rejectValue("number", "NotEmpty.TicketForm.number");
