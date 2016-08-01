@@ -11,7 +11,7 @@
 <body>
 	<div align="center">
 		<h1>New/Edit Ticket</h1>
-		<form:form action="saveTicket" method="post" modelAttribute="ticket" commandName="TicketForm">
+		<form:form action="saveTicket" method="post" modelAttribute="ticket">
 		<form:errors path="*" cssClass="errorblock" element="div"/>
 		<table>
 			<form:hidden path="id"/>
