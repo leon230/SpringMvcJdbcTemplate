@@ -14,12 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * This controller routes accesses to the application to the appropriate
@@ -31,6 +35,17 @@ public class HomeController {
 
 	@Autowired
 	private TicketDAO ticketDAO;
+	@Autowired
+	NewTicketValidator userFormValidator;
+
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		binder.setValidator(userFormValidator);
+//	}
+	@InitBinder("TicketForm")
+	public void initBinder(WebDataBinder binder){
+		binder.setValidator(userFormValidator);
+	}
 
 	@RequestMapping(value="/")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
@@ -57,10 +72,10 @@ public class HomeController {
 //		dateFormat.setLenient(false);
 //		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 //	}
-	@InitBinder
-	public void binder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new DateEditor());
-	}
+//	@InitBinder
+//	public void binder(WebDataBinder binder) {
+//		binder.registerCustomEditor(Date.class, new DateEditor());
+//	}
 //	@InitBinder
 //	protected void initBinder(WebDataBinder binder) {
 //		binder.setValidator(sun.security.krb5.internal.Ticket);
@@ -74,8 +89,10 @@ public class HomeController {
 //		return new ModelAndView("redirect:/");
 //	}
     @RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
-    public String CheckForm(@Valid Ticket ticket, BindingResult result) {
+    public String CheckForm(@ModelAttribute ("ticket") @Valid Ticket ticket, BindingResult result
+			, ModelAndView model) {
         if (result.hasErrors()) {
+			model.setViewName("TicketForm");
             return "TicketForm";
         }
         else {

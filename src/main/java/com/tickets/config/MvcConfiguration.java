@@ -39,7 +39,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 //	reloadableResourceBundleMessageSource.setBasename("/WEB-INF/messages/messages")‌​;
     @Bean public ResourceBundleMessageSource messageSource(){
         ResourceBundleMessageSource ResourceBundleMessageSource = new ResourceBundleMessageSource();
-        ResourceBundleMessageSource.setBasename("messages");
+        ResourceBundleMessageSource.setBasenames("/WEB-INF/messages/messages","/webapp/WEB-INF/messages/messages");
         return ResourceBundleMessageSource;
     }
 
