@@ -101,6 +101,8 @@ public class HomeController {
 		return model;
 	}
 
+
+	//@ModelAttribute("clusters")
 	private void initModelList(ModelAndView model) {
 		List<String> clusterList = new ArrayList<String>();
 		clusterList.add("Billing");

@@ -15,15 +15,17 @@ public class Ticket {
     private String title;
     private String owner;
     private String cluster;
+    private Date openDate;
 
     public Ticket() {
     }
 
-    public Ticket(String number, String title, String owner, String cluster) {
+    public Ticket(String number, String title, String owner, String cluster, Date openDate) {
         this.number = number;
         this.title = title;
         this.owner = owner;
         this.cluster = cluster;
+        this.openDate = openDate;
     }
 
     public int getId() {
@@ -65,4 +67,9 @@ public class Ticket {
     public void setCluster(String cluster) {
         this.cluster = cluster;
     }
+
+    public void setOpenDate(Date date){this.openDate = date;}
+
+    public Date getOpenDate(){return openDate;}
+
 }

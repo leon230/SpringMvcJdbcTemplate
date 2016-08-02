@@ -1,0 +1,3 @@
+Hi Hetal,
+Thanks for prompt response.
+We can get the value back in the jsp combo box when we add session(@SessionAttributes("customerVO")) in annotation controller. But i want to retain this value with the help of request object not session object.

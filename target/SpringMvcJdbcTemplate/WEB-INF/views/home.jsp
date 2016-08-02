@@ -21,6 +21,7 @@
 	        	<th>Title</th>
 	        	<th>Owner</th>
 	        	<th>Cluster</th>
+	        	<th>Open Date</th>
 	        	<th>Action</th>
 	        	
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
@@ -31,6 +32,7 @@
 					<td>${ticket.title}</td>
 					<td>${ticket.owner}</td>
 					<td>${ticket.cluster}</td>
+					<td>${ticket.openDate}</td>
 					<td>
 						<button class="btn btn-primary" onclick="location.href='editTicket?id=${ticket.id}'">Edit</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;

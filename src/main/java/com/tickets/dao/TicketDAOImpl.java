@@ -49,7 +49,7 @@ public class TicketDAOImpl implements TicketDAO {
 
 	@Override
 	public List<Ticket> list() {
-		String sql = "SELECT ID,TICKET_NO,TICKET_TITLE,CLUSTER,TICKET_OWNER FROM tickets";
+		String sql = "SELECT ID,TICKET_NO,TICKET_TITLE,CLUSTER,TICKET_OWNER,OPEN_DATE FROM tickets";
 		List<Ticket> listTicket = jdbcTemplate.query(sql, new RowMapper<Ticket>() {
 
 			@Override
@@ -61,7 +61,8 @@ public class TicketDAOImpl implements TicketDAO {
 				aTicket.setTitle(rs.getString("TICKET_TITLE"));
 				aTicket.setCluster(rs.getString("CLUSTER"));
 				aTicket.setOwner(rs.getString("TICKET_OWNER"));
-				
+				aTicket.setOpenDate(rs.getDate("OPEN_DATE"));
+
 				return aTicket;
 			}
 			
@@ -85,6 +86,7 @@ public class TicketDAOImpl implements TicketDAO {
 					ticket.setTitle(rs.getString("TICKET_TITLE"));
 					ticket.setOwner(rs.getString("TICKET_OWNER"));
 					ticket.setCluster(rs.getString("CLUSTER"));
+					ticket.setOpenDate(rs.getDate("OPEN_DATE"));
 					return ticket;
 				}
 				
