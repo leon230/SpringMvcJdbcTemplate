@@ -10,10 +10,10 @@
         <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
         <title>Ticket Manager Home</title>
     </head>
+<jsp:include page="header.jsp" />
     <body>
     	<div class="container">
 	        <h1>Ticket List</h1>
-	        <button class="btn btn-info" onclick="location.href='newTicket'">New Ticket</button>
 	        <table class="table table-striped">
 	        	<th>No</th>
 	        	<th>ID</th>

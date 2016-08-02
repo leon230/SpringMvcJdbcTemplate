@@ -10,10 +10,11 @@
     <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
     <title>New/Edit Ticket</title>
 </head>
+<jsp:include page="header.jsp" />
 <body>
 	<div align="center">
 		<h1>New/Edit Ticket</h1>
-		<form:form action="saveTicket" method="post" modelAttribute="ticket">
+		<form:form action="saveTicket" method="post" modelAttribute="TicketForm">
 		<form:errors path="*" class="errorblock" element="div"/>
 		<table>
 			<form:hidden path="id"/>

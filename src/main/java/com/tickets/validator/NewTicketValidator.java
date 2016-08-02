@@ -22,11 +22,11 @@ public class NewTicketValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        Ticket user = (Ticket) target;
+        Ticket ticket = (Ticket) target;
 
 //        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "number", "NotEmpty.TicketForm.number");
 
-        if(user.getNumber()==null || user.getNumber()==""){
+        if(ticket.getNumber()==null || ticket.getNumber()==""){
             errors.rejectValue("number", "NotEmpty.TicketForm.number");
         }
 

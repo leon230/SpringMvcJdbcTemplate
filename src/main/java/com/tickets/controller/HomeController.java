@@ -42,7 +42,7 @@ public class HomeController {
 //	protected void initBinder(WebDataBinder binder) {
 //		binder.setValidator(userFormValidator);
 //	}
-	@InitBinder("ticket")
+	@InitBinder("TicketForm")
 	public void initBinder(WebDataBinder binder){
 		binder.setValidator(ticketFormValidator);
 	}
@@ -62,22 +62,23 @@ public class HomeController {
 		SimpleDateFormat printFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		newTicket.setNumber(System.getProperty("user.name") + "_" + printFormat.format(date));
-		initModelList(model);
-		model.addObject("ticket", newTicket);
+		model.addObject("TicketForm", newTicket);
 		model.setViewName("TicketForm");
+		initModelList(model);
 		return model;
 	}
 
     @RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
-    public String CheckForm(@ModelAttribute ("ticket") @Valid Ticket ticket, BindingResult result
+    public ModelAndView CheckForm(@ModelAttribute ("TicketForm") @Validated Ticket ticket, BindingResult result
 			, ModelAndView model) {
         if (result.hasErrors()) {
-			model.setViewName("TicketForm");
-            return "TicketForm";
+			initModelList(model);
+			//model.setViewName("TicketForm");
+			return new ModelAndView("TicketForm");
         }
         else {
-			ticketDAO.saveOrUpdate(ticket);
-            return "redirect:/";
+				ticketDAO.saveOrUpdate(ticket);
+			return new ModelAndView("redirect:/");
         }
 		//return "redirect:/";
     }
@@ -95,7 +96,7 @@ public class HomeController {
 		Ticket ticket = ticketDAO.get(ticketId);
 		ModelAndView model = new ModelAndView("TicketForm");
 		initModelList(model);
-		model.addObject("ticket", ticket);
+		model.addObject("TicketForm", ticket);
 		
 		return model;
 	}

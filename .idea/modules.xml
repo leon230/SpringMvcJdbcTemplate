@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SpringMvcJdbcTemplate.iml" filepath="$PROJECT_DIR$/SpringMvcJdbcTemplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TicketsSys.iml" filepath="$PROJECT_DIR$/TicketsSys.iml" />
     </modules>
   </component>
 </project>

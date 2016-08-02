@@ -10,11 +10,11 @@
         <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
         <title>Ticket Manager Home</title>
     </head>
+<jsp:include page="header.jsp" />
     <body>
-    	<div align="center">
+    	<div class="container">
 	        <h1>Ticket List</h1>
-	        <h3><a href="newTicket">New Ticket</a></h3>
-	        <table class="mainTable">
+	        <table class="table table-striped">
 	        	<th>No</th>
 	        	<th>ID</th>
 	        	<th>Ticket number</th>
@@ -32,10 +32,9 @@
 					<td>${ticket.owner}</td>
 					<td>${ticket.cluster}</td>
 					<td>
-						<a href="editTicket?id=${ticket.id}">Edit</a>
+						<button class="btn btn-primary" onclick="location.href='editTicket?id=${ticket.id}'">Edit</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="deleteTicket?id=${ticket.id}">Delete</a>
-						<button class="btn btn-primary" onclick="#">Update</button>
+						<button class="btn btn-danger" onclick="location.href='deleteTicket?id=${ticket.id}'">Delete</button>
 					</td>
 							
 	        	</tr>
