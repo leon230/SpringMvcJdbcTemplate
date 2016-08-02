@@ -7,6 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
         <title>Ticket Manager Home</title>
     </head>
     <body>
@@ -34,6 +35,7 @@
 						<a href="editTicket?id=${ticket.id}">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="deleteTicket?id=${ticket.id}">Delete</a>
+						<button class="btn btn-primary" onclick="#">Update</button>
 					</td>
 							
 	        	</tr>

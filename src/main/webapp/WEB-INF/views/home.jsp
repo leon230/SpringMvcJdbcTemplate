@@ -7,13 +7,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
         <title>Ticket Manager Home</title>
     </head>
     <body>
-    	<div align="center">
+    	<div class="container">
 	        <h1>Ticket List</h1>
-	        <h3><a href="newTicket">New Ticket</a></h3>
-	        <table class="mainTable">
+	        <button class="btn btn-info" onclick="location.href='newTicket'">New Ticket</button>
+	        <table class="table table-striped">
 	        	<th>No</th>
 	        	<th>ID</th>
 	        	<th>Ticket number</th>
@@ -31,9 +32,9 @@
 					<td>${ticket.owner}</td>
 					<td>${ticket.cluster}</td>
 					<td>
-						<a href="editTicket?id=${ticket.id}">Edit</a>
+						<button class="btn btn-primary" onclick="location.href='editTicket?id=${ticket.id}'">Edit</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="deleteTicket?id=${ticket.id}">Delete</a>
+						<button class="btn btn-danger" onclick="location.href='deleteTicket?id=${ticket.id}'">Delete</button>
 					</td>
 							
 	        	</tr>

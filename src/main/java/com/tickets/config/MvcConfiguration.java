@@ -26,16 +26,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
-	
+
 	//@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
-//    @Bean public ReloadableResourceBundleMessageSource messageSource(){
-//        ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource = new ReloadableResourceBundleMessageSource();
-//        reloadableResourceBundleMessageSource.setBasename("messages");
-//        return reloadableResourceBundleMessageSource;
-//    }
+
 //	reloadableResourceBundleMessageSource.setBasename("/WEB-INF/messages/messages")‌​;
     @Bean public ResourceBundleMessageSource messageSource(){
         ResourceBundleMessageSource ResourceBundleMessageSource = new ResourceBundleMessageSource();

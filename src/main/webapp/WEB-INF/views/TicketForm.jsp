@@ -27,12 +27,15 @@
 				<td><form:input path="title" /></td>
 			</tr>
 			<tr>
-				<td>Owner:</td>
-				<td><form:input path="owner" /></td>
+				<td>Cluster:</td>
+				<td><form:select path="cluster">
+                    <form:option value="" label="...." />
+                    <form:options items="${clusters}" />
+                    </form:select></td>
 			</tr>
 			<tr>
-				<td>Cluster:</td>
-				<td><form:input path="cluster" /></td>
+				<td>Owner:</td>
+				<td><form:input path="owner" /></td>
 			</tr>
 			<tr>
 				<td align="center"><input type="submit" value="Save"></td>

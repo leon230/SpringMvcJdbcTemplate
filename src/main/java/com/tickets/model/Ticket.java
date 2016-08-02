@@ -11,8 +11,6 @@ import java.util.Date;
  */
 public class Ticket {
     private int id;
-    @NotNull
-
     private String number;
     private String title;
     private String owner;

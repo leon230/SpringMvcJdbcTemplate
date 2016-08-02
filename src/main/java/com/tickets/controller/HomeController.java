@@ -2,8 +2,7 @@ package com.tickets.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import com.tickets.dao.TicketDAO;
@@ -37,7 +36,7 @@ public class HomeController {
 	@Autowired
 	private TicketDAO ticketDAO;
 	@Autowired
-	NewTicketValidator userFormValidator;
+	NewTicketValidator ticketFormValidator;
 
 //	@InitBinder
 //	protected void initBinder(WebDataBinder binder) {
@@ -45,7 +44,7 @@ public class HomeController {
 //	}
 	@InitBinder("ticket")
 	public void initBinder(WebDataBinder binder){
-		binder.setValidator(userFormValidator);
+		binder.setValidator(ticketFormValidator);
 	}
 
 	@RequestMapping(value="/")
@@ -63,32 +62,12 @@ public class HomeController {
 		SimpleDateFormat printFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		newTicket.setNumber(System.getProperty("user.name") + "_" + printFormat.format(date));
+		initModelList(model);
 		model.addObject("ticket", newTicket);
 		model.setViewName("TicketForm");
 		return model;
 	}
-//	@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		dateFormat.setLenient(false);
-//		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-//	}
-//	@InitBinder
-//	public void binder(WebDataBinder binder) {
-//		binder.registerCustomEditor(Date.class, new DateEditor());
-//	}
-//	@InitBinder
-//	protected void initBinder(WebDataBinder binder) {
-//		binder.setValidator(sun.security.krb5.internal.Ticket);
-//	}
 
-
-	
-//	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
-//	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
-//		ticketDAO.saveOrUpdate(ticket);
-//		return new ModelAndView("redirect:/");
-//	}
     @RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
     public String CheckForm(@ModelAttribute ("ticket") @Valid Ticket ticket, BindingResult result
 			, ModelAndView model) {
@@ -115,8 +94,43 @@ public class HomeController {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
 		Ticket ticket = ticketDAO.get(ticketId);
 		ModelAndView model = new ModelAndView("TicketForm");
+		initModelList(model);
 		model.addObject("ticket", ticket);
 		
 		return model;
 	}
+
+	private void initModelList(ModelAndView model) {
+		List<String> clusterList = new ArrayList<String>();
+		clusterList.add("Billing");
+		clusterList.add("Reporting");
+		clusterList.add("OPS");
+		clusterList.add("SAP");
+		clusterList.add("Other");
+		model.addObject("clusters", clusterList);
+	}
+
+
+	//	@InitBinder
+//	public void initBinder(WebDataBinder binder) {
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		dateFormat.setLenient(false);
+//		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+//	}
+//	@InitBinder
+//	public void binder(WebDataBinder binder) {
+//		binder.registerCustomEditor(Date.class, new DateEditor());
+//	}
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		binder.setValidator(sun.security.krb5.internal.Ticket);
+//	}
+
+
+
+//	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
+//	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
+//		ticketDAO.saveOrUpdate(ticket);
+//		return new ModelAndView("redirect:/");
+//	}
 }
