@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-
+	//private final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private TicketDAO ticketDAO;
 	@Autowired

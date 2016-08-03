@@ -33,6 +33,7 @@
 
 			<spring:bind path="title">
 			<div class="form-group">
+			<div class="form-group">
 				<label class="col-sm-2 control-label">Ticket title</label>
 				<div class="col-sm-10">
 					<form:input path="title" type="text" class="form-control " id="title" placeholder="Ticket title" />

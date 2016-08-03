@@ -111,6 +111,7 @@ public class Ticket {
     public void setPriority(String val) {
         this.priority = val;
     }
+
     public String getStatus() {
         return status;
     }

@@ -29,7 +29,7 @@ public class TicketDAOImpl implements TicketDAO {
 			// update
 			String sql = "UPDATE tickets SET TICKET_NO=?, TICKET_TITLE=?, TICKET_OWNER=?, "
 						+ "CLUSTER=?, OPEN_DATE=?, CLOSE_DATE=?, DESCRIPTION=?" +
-					", REPORTED_BY=?, PRIORITY=?, STATUS=?, ACC_OWNER=? WHERE ID=?";
+					",REPORTED_BY=?, PRIORITY=?, STATUS=?, ACC_OWNER=? WHERE ID=?";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
 					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
 					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getStatus(),
