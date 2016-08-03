@@ -10,6 +10,7 @@ import com.tickets.model.Ticket;
 import com.tickets.utils.DateEditor;
 import com.tickets.validator.NewTicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,9 @@ public class HomeController {
 	@InitBinder("TicketForm")
 	public void initBinder(WebDataBinder binder){
 		binder.setValidator(ticketFormValidator);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 	@RequestMapping(value="/")
@@ -114,7 +118,7 @@ public class HomeController {
 	}
 
 
-	//	@InitBinder
+//		@InitBinder
 //	public void initBinder(WebDataBinder binder) {
 //		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //		dateFormat.setLenient(false);

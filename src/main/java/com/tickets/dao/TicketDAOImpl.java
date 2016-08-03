@@ -28,15 +28,15 @@ public class TicketDAOImpl implements TicketDAO {
 		if (ticket.getId() > 0) {
 			// update
 			String sql = "UPDATE tickets SET TICKET_NO=?, TICKET_TITLE=?, TICKET_OWNER=?, "
-						+ "CLUSTER=? WHERE ID=?";
+						+ "CLUSTER=?, OPEN_DATE=? WHERE ID=?";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
-					ticket.getOwner(), ticket.getCluster(), ticket.getId());
+					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(), ticket.getId());
 		} else {
 			// insert
-			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER)"
-						+ " VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER, OPEN_DATE)"
+						+ " VALUES (?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
-					ticket.getOwner(), ticket.getCluster());
+					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate());
 		}
 		
 	}
@@ -49,7 +49,7 @@ public class TicketDAOImpl implements TicketDAO {
 
 	@Override
 	public List<Ticket> list() {
-		String sql = "SELECT ID,TICKET_NO,TICKET_TITLE,CLUSTER,TICKET_OWNER,OPEN_DATE FROM tickets";
+		String sql = "SELECT * FROM tickets";
 		List<Ticket> listTicket = jdbcTemplate.query(sql, new RowMapper<Ticket>() {
 
 			@Override
@@ -62,6 +62,12 @@ public class TicketDAOImpl implements TicketDAO {
 				aTicket.setCluster(rs.getString("CLUSTER"));
 				aTicket.setOwner(rs.getString("TICKET_OWNER"));
 				aTicket.setOpenDate(rs.getDate("OPEN_DATE"));
+				aTicket.setCloseDate(rs.getDate("CLOSE_DATE"));
+				aTicket.setDescription(rs.getString("DESCRIPTION"));
+				aTicket.setReportedBy(rs.getString("REPORTED_BY"));
+				aTicket.setPriority(rs.getString("PRIORITY"));
+				aTicket.setStatus(rs.getString("STATUS"));
+				aTicket.setAccOwner(rs.getString("ACC_OWNER"));
 
 				return aTicket;
 			}
@@ -87,6 +93,12 @@ public class TicketDAOImpl implements TicketDAO {
 					ticket.setOwner(rs.getString("TICKET_OWNER"));
 					ticket.setCluster(rs.getString("CLUSTER"));
 					ticket.setOpenDate(rs.getDate("OPEN_DATE"));
+					ticket.setCloseDate(rs.getDate("CLOSE_DATE"));
+					ticket.setDescription(rs.getString("DESCRIPTION"));
+					ticket.setReportedBy(rs.getString("REPORTED_BY"));
+					ticket.setPriority(rs.getString("PRIORITY"));
+					ticket.setStatus(rs.getString("STATUS"));
+					ticket.setAccOwner(rs.getString("ACC_OWNER"));
 					return ticket;
 				}
 				

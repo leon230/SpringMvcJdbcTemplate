@@ -16,16 +16,30 @@ public class Ticket {
     private String owner;
     private String cluster;
     private Date openDate;
+    private Date closeDate;
+    private String description;
+    private String reportedBy;
+    private String priority;
+    private String status;
+    private String accOwner;
 
     public Ticket() {
     }
 
-    public Ticket(String number, String title, String owner, String cluster, Date openDate) {
+    public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
+                  String reportedBy, String priority, String status, String accOwner) {
         this.number = number;
         this.title = title;
         this.owner = owner;
         this.cluster = cluster;
         this.openDate = openDate;
+        this.closeDate = closeDate;
+        this.description = description;
+        this.reportedBy = reportedBy;
+        this.priority = priority;
+        this.status = status;
+        this.accOwner = accOwner;
+
     }
 
     public int getId() {
@@ -72,4 +86,44 @@ public class Ticket {
 
     public Date getOpenDate(){return openDate;}
 
+    public void setCloseDate(Date date){this.closeDate = date;}
+
+    public Date getCloseDate(){return closeDate;}
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String val) {this.description = val;}
+
+    public String getReportedBy() {
+        return reportedBy;
+    }
+
+    public void setReportedBy(String val) {
+        this.reportedBy = val;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String val) {
+        this.priority = val;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String val) {
+        this.status = val;
+    }
+
+    public String getAccOwner() {
+        return accOwner;
+    }
+
+    public void setAccOwner(String val) {
+        this.accOwner = val;
+    }
 }

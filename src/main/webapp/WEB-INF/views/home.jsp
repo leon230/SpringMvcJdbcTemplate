@@ -12,7 +12,7 @@
     </head>
 <jsp:include page="header.jsp" />
     <body>
-    	<div class="container">
+    	<div>
 	        <h1>Ticket List</h1>
 	        <table class="table table-striped">
 	        	<th>No</th>
@@ -22,6 +22,12 @@
 	        	<th>Owner</th>
 	        	<th>Cluster</th>
 	        	<th>Open Date</th>
+	        	<th>Close Date</th>
+	        	<th>Description</th>
+	        	<th>Reported by</th>
+	        	<th>Status</th>
+	        	<th>Priority</th>
+	        	<th>Oracle ticket num</th>
 	        	<th>Action</th>
 	        	
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
@@ -33,6 +39,12 @@
 					<td>${ticket.owner}</td>
 					<td>${ticket.cluster}</td>
 					<td>${ticket.openDate}</td>
+					<td>${ticket.closeDate}</td>
+					<td>${ticket.description}</td>
+					<td>${ticket.reportedBy}</td>
+					<td>${ticket.status}</td>
+					<td>${ticket.priority}</td>
+					<td>${ticket.accOwner}</td>
 					<td>
 						<button class="btn btn-primary" onclick="location.href='editTicket?id=${ticket.id}'">Edit</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;
