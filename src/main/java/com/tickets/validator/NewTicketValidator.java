@@ -30,10 +30,25 @@ public class NewTicketValidator implements Validator {
             errors.rejectValue("number", "NotEmpty.TicketForm.number");
         }
 
+        if(ticket.getTitle()==null || ticket.getTitle()==""){
+            errors.rejectValue("title", "NotEmpty.TicketForm.title");
+        }
 
-//        if(user.getNumber()==null || user.getNumber() == ""){
-//            errors.rejectValue("number", "NotEmpty.TicketForm.number");
-//        }
+        if(ticket.getCluster()==null || ticket.getCluster()==""){
+            errors.rejectValue("cluster", "NotEmpty.TicketForm.cluster");
+        }
+
+        if(ticket.getDescription()==null || ticket.getDescription()==""){
+            errors.rejectValue("description", "NotEmpty.TicketForm.description");
+        }
+
+        if(ticket.getReportedBy()==null || ticket.getReportedBy()==""){
+            errors.rejectValue("reportedBy", "NotEmpty.TicketForm.reportedBy");
+        }
+
+        if(ticket.getPriority()==null || ticket.getPriority()==""){
+            errors.rejectValue("priority", "NotEmpty.TicketForm.priority");
+        }
 
 
     }

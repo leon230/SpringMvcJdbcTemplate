@@ -86,7 +86,7 @@
 
             <spring:bind path="description">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Ticket owner</label>
+                <label class="col-sm-2 control-label">Ticket description</label>
                 <div class="col-sm-10">
                     <form:textarea path="description" type="text" class="form-control " id="description" placeholder="Ticket description" />
                     <form:errors path="description" class="control-label" />
@@ -96,7 +96,7 @@
 
             <spring:bind path="reportedBy">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Ticket owner</label>
+                <label class="col-sm-2 control-label">Reporting user</label>
                 <div class="col-sm-10">
                     <form:input path="reportedBy" type="text" class="form-control " id="reportedBy" placeholder="Reported by" />
                     <form:errors path="reportedBy" class="control-label" />
@@ -143,7 +143,7 @@
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="submit" value="Save">
-				<a href="/TicketSys"> Cancel </a>
+				<a href="/SpringMV"> Cancel </a>
 			</div>
 		</div>
 

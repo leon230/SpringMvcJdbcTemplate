@@ -60,6 +60,8 @@ public class HomeController {
 		SimpleDateFormat printFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		newTicket.setNumber(System.getProperty("user.name") + "_" + printFormat.format(date));
+		newTicket.setReportedBy(System.getProperty("user.name"));
+		newTicket.setTstatus("In queue");
 		model.addObject("TicketForm", newTicket);
 		model.setViewName("TicketForm");
 		initModelList(model);
