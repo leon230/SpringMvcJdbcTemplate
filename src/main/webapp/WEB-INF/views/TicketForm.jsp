@@ -117,15 +117,15 @@
             </div>
             </spring:bind>
 
-            <spring:bind path="status">
+            <spring:bind path="tstatus">
             <div class="form-group">
                 <label class="col-sm-2 control-label">Status</label>
                 <div class="col-sm-10">
-                    <form:select path="status" class="form-control">
+                    <form:select path="tstatus" class="form-control">
                         <form:option value="" label="--- Select ---" />
                         <form:options items="${statuses}" />
                     </form:select>
-                    <form:errors path="status" class="control-label" />
+                    <form:errors path="tstatus" class="control-label" />
                 </div>
             </div>
             </spring:bind>

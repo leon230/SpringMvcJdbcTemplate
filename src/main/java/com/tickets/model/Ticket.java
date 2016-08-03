@@ -20,14 +20,14 @@ public class Ticket {
     private String description;
     private String reportedBy;
     private String priority;
-    private String status;
+    private String tstatus;
     private String accOwner;
 
     public Ticket() {
     }
 
     public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
-                  String reportedBy, String priority, String status, String accOwner) {
+                  String reportedBy, String priority, String tstatus, String accOwner) {
         this.number = number;
         this.title = title;
         this.owner = owner;
@@ -37,7 +37,7 @@ public class Ticket {
         this.description = description;
         this.reportedBy = reportedBy;
         this.priority = priority;
-        this.status = status;
+        this.tstatus = tstatus;
         this.accOwner = accOwner;
 
     }
@@ -112,12 +112,12 @@ public class Ticket {
         this.priority = val;
     }
 
-    public String getStatus() {
-        return status;
+    public String getTstatus() {
+        return tstatus;
     }
 
-    public void setStatus(String val) {
-        this.status = val;
+    public void setTstatus(String val) {
+        this.tstatus = val;
     }
 
     public String getAccOwner() {

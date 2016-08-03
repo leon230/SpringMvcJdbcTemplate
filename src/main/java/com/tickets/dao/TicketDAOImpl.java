@@ -32,7 +32,7 @@ public class TicketDAOImpl implements TicketDAO {
 					",REPORTED_BY=?, PRIORITY=?, STATUS=?, ACC_OWNER=? WHERE ID=?";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
 					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
-					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getStatus(),
+					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getTstatus(),
 					ticket.getAccOwner(), ticket.getId());
 		} else {
 			// insert
@@ -41,7 +41,7 @@ public class TicketDAOImpl implements TicketDAO {
 						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
 					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
-					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getStatus(),
+					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getTstatus(),
 					ticket.getAccOwner());
 		}
 		
@@ -55,7 +55,7 @@ public class TicketDAOImpl implements TicketDAO {
 
 	@Override
 	public List<Ticket> list() {
-		String sql = "SELECT * FROM tickets";
+		String sql = "SELECT * FROM tickets ORDER BY ID DESC";
 		List<Ticket> listTicket = jdbcTemplate.query(sql, new RowMapper<Ticket>() {
 
 			@Override
@@ -72,7 +72,7 @@ public class TicketDAOImpl implements TicketDAO {
 				aTicket.setDescription(rs.getString("DESCRIPTION"));
 				aTicket.setReportedBy(rs.getString("REPORTED_BY"));
 				aTicket.setPriority(rs.getString("PRIORITY"));
-				aTicket.setStatus(rs.getString("STATUS"));
+				aTicket.setTstatus(rs.getString("STATUS"));
 				aTicket.setAccOwner(rs.getString("ACC_OWNER"));
 
 				return aTicket;
@@ -103,7 +103,7 @@ public class TicketDAOImpl implements TicketDAO {
 					ticket.setDescription(rs.getString("DESCRIPTION"));
 					ticket.setReportedBy(rs.getString("REPORTED_BY"));
 					ticket.setPriority(rs.getString("PRIORITY"));
-					ticket.setStatus(rs.getString("STATUS"));
+					ticket.setTstatus(rs.getString("STATUS"));
 					ticket.setAccOwner(rs.getString("ACC_OWNER"));
 					return ticket;
 				}

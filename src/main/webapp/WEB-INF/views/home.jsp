@@ -42,7 +42,7 @@
 					<td>${ticket.closeDate}</td>
 					<td>${ticket.description}</td>
 					<td>${ticket.reportedBy}</td>
-					<td>${ticket.status}</td>
+					<td>${ticket.tstatus}</td>
 					<td>${ticket.priority}</td>
 					<td>${ticket.accOwner}</td>
 					<td>
