@@ -80,7 +80,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SpringMvcJdbcTemplate</finalName>
+		<finalName>SpringMV</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

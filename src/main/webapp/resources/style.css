@@ -6,8 +6,8 @@ body {
 }
 .mainTable  th, td {
    border: 1px solid black;
-   padding: 10px;
-   text-align: left;
+   padding: 5px;
+   text-align: center;
 }
 .mainTable {
     border-collapse: collapse;
@@ -29,4 +29,9 @@ body {
 	border: 3px solid #ff0000;
 	padding:8px;
 	margin:16px;
+}
+div.wrapper {
+  text-align: left;
+  width: 3000px;
+  overflow: auto;
 }

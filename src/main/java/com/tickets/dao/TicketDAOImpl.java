@@ -28,15 +28,21 @@ public class TicketDAOImpl implements TicketDAO {
 		if (ticket.getId() > 0) {
 			// update
 			String sql = "UPDATE tickets SET TICKET_NO=?, TICKET_TITLE=?, TICKET_OWNER=?, "
-						+ "CLUSTER=?, OPEN_DATE=? WHERE ID=?";
+						+ "CLUSTER=?, OPEN_DATE=?, CLOSE_DATE=?, DESCRIPTION=?" +
+					", REPORTED_BY=?, PRIORITY=?, STATUS=?, ACC_OWNER=? WHERE ID=?";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
-					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(), ticket.getId());
+					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
+					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getStatus(),
+					ticket.getAccOwner(), ticket.getId());
 		} else {
 			// insert
-			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER, OPEN_DATE)"
-						+ " VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER, OPEN_DATE," +
+					"CLOSE_DATE,DESCRIPTION,REPORTED_BY,PRIORITY,STATUS,ACC_OWNER)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
-					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate());
+					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
+					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getStatus(),
+					ticket.getAccOwner());
 		}
 		
 	}

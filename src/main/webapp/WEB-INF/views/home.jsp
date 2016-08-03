@@ -12,9 +12,9 @@
     </head>
 <jsp:include page="header.jsp" />
     <body>
-    	<div>
+    	<div class="wrapper">
 	        <h1>Ticket List</h1>
-	        <table class="table table-striped">
+	        <table class="mainTable">
 	        	<th>No</th>
 	        	<th>ID</th>
 	        	<th>Ticket number</th>
