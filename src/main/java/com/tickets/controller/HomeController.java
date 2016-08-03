@@ -4,17 +4,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import com.tickets.dao.TicketDAO;
 import com.tickets.model.Ticket;
-import com.tickets.utils.DateEditor;
 import com.tickets.validator.NewTicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -23,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * This controller routes accesses to the application to the appropriate
@@ -105,7 +99,6 @@ public class HomeController {
 		return model;
 	}
 
-
 	//@ModelAttribute("clusters")
 	private void initModelList(ModelAndView model) {
 		List<String> clusterList = new ArrayList<String>();
@@ -115,6 +108,19 @@ public class HomeController {
 		clusterList.add("SAP");
 		clusterList.add("Other");
 		model.addObject("clusters", clusterList);
+
+		List<String> statuses = new ArrayList<String>();
+		statuses.add("In queue");
+		statuses.add("In progress");
+		statuses.add("Sent for testing");
+		statuses.add("Closed");
+		model.addObject("statuses", statuses);
+
+		List<String> priorities = new ArrayList<String>();
+		priorities.add("High");
+		priorities.add("Medium");
+		priorities.add("Low");
+		model.addObject("priorities", priorities);
 	}
 
 

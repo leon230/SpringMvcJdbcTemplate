@@ -98,7 +98,7 @@
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/SpringMV</path>
+					<path>/TicketSys</path>
 				</configuration>
 			</plugin>
 		</plugins>
