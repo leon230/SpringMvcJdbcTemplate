@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="SpringMvcJdbcTemplate" />
+        <module name="TicketsSys" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="SpringMvcJdbcTemplate" target="1.7" />
+      <module name="TicketsSys" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
