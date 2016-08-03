@@ -8,65 +8,80 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/jquery-ui.css" />" rel="stylesheet">
-       <script src="<c:url value="/resources/external/jquery/jquery.js" />"></script>
-       <script src="<c:url value="/resources/jquery-ui.js" />"></script>
-
-    	<script type="text/javascript">
-        $( "input[name=openDate]" ).datepicker({
-        	format: 'yyyy-mm-dd'
-        });
-        </script>
-
-
 
     <title>New/Edit Ticket</title>
 </head>
 <jsp:include page="header.jsp" />
 <body>
-	<div align="center">
+	<div class="container">
 		<h1>New/Edit Ticket</h1>
 		<form:form action="saveTicket" method="post" modelAttribute="TicketForm">
 		<form:errors path="*" class="errorblock" element="div"/>
-		<table>
+
 			<form:hidden path="id"/>
+
 			<spring:bind path="number">
-			<tr>
-				<td>Number:</td>
-				<td><form:input path="number" /></td>
-				<td><form:errors path="number" class="error" /></td>
-			</tr>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Number</label>
+				<div class="col-sm-10">
+					<form:input path="number" type="text" class="form-control " id="number" placeholder="Ticket number" />
+					<form:errors path="number" class="control-label" />
+				</div>
+			</div>
 			</spring:bind>
-			<tr>
-				<td>Title:</td>
-				<td><form:input path="title" /></td>
-			</tr>
+
+			<spring:bind path="title">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Ticket title</label>
+				<div class="col-sm-10">
+					<form:input path="title" type="text" class="form-control " id="title" placeholder="Ticket title" />
+					<form:errors path="title" class="control-label" />
+				</div>
+			</div>
+			</spring:bind>
+
 			<spring:bind path="cluster">
-			<tr>
-				<td>Cluster:</td>
-				<td><form:select path="cluster">
-                    <form:option value="" label="...." />
-                    <form:options items="${clusters}" />
-                    </form:select></td>
-			</tr>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Cluster</label>
+				<div class="col-sm-10">
+					<form:select path="cluster" class="form-control">
+						<form:option value="NONE" label="--- Select ---" />
+						<form:options items="${clusters}" />
+					</form:select>
+					<form:errors path="cluster" class="control-label" />
+				</div>
+			</div>
 			</spring:bind>
+
 			<spring:bind path="owner">
-			<tr>
-				<td>Owner:</td>
-				<td><form:input path="owner" /></td>
-			</tr>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Ticket owner</label>
+				<div class="col-sm-10">
+					<form:input path="owner" type="text" class="form-control " id="owner" placeholder="Ticket owner" />
+					<form:errors path="owner" class="control-label" />
+				</div>
+			</div>
 			</spring:bind>
+
 			<spring:bind path="openDate">
-            			<tr>
-            				<td>Open date:</td>
-            				<td><form:input path="openDate" /></td>
-            			</tr>
-            			</spring:bind>
-			<tr>
-				<td align="center"><input type="submit" value="Save"></td>
-				<td align="center"><a href="/SpringMvcJdbcTemplate"> Cancel </a></td>
-			</tr>
-		</table>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Open date</label>
+				<div class="col-sm-10">
+					<form:input path="openDate" type="text" class="form-control " id="openDate" placeholder="Open date" />
+					<form:errors path="openDate" class="control-label" />
+				</div>
+			</div>
+			</spring:bind>
+
+			<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" value="Save">
+				<a href="/SpringMvcJdbcTemplate"> Cancel </a>
+			</div>
+		</div>
+
+
+
 		</form:form>
 	</div>
 </body>
