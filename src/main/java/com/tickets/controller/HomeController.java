@@ -53,15 +53,20 @@ public class HomeController {
 	}
 
 	@RequestMapping(value="/")
+	public String redirect(){
+		return "redirect:/home";
+	}
+	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
 		model.addObject("listTicket", listTicket);
 		model.setViewName("home");
-		
+
 		return model;
 	}
 
-	@RequestMapping(value="/users")
+
+	@RequestMapping(value="/home/users")
     public ModelAndView listuser(ModelAndView model) throws IOException{
         List<User> listuser = userDAO.listuser("luki");
         model.addObject("listuser", listuser);
@@ -72,7 +77,7 @@ public class HomeController {
 
 
 	
-	@RequestMapping(value = "/newTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
 		Ticket newTicket = new Ticket();
 		SimpleDateFormat printFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -86,7 +91,7 @@ public class HomeController {
 		return model;
 	}
 
-    @RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
+    @RequestMapping(value = "/home/saveTicket", method = RequestMethod.POST)
     public ModelAndView CheckForm(@ModelAttribute ("TicketForm") @Validated Ticket ticket, BindingResult result
 			, ModelAndView model) {
         if (result.hasErrors()) {
@@ -101,14 +106,14 @@ public class HomeController {
 		//return "redirect:/";
     }
 	
-	@RequestMapping(value = "/deleteTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/deleteTicket", method = RequestMethod.GET)
 	public ModelAndView deleteTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
 		ticketDAO.delete(ticketId);
 		return new ModelAndView("redirect:/");
 	}
 	
-	@RequestMapping(value = "/editTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/editTicket", method = RequestMethod.GET)
 	public ModelAndView editTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
 		Ticket ticket = ticketDAO.get(ticketId);

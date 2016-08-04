@@ -2,6 +2,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib  uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
+<sec:authorize access="hasRole('ROLE_USER')">
 
 <html>
     <head>
@@ -10,6 +13,10 @@
         <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
         <title>Ticket Manager Home</title>
     </head>
+
+    <c:url value="home/editTicket?id=" var="editTicket" />
+    <c:url value="home/deleteTicket?id=" var="deleteTicket" />
+
 <jsp:include page="header.jsp" />
     <body>
     	<div class="wrapper">
@@ -46,9 +53,9 @@
 					<td>${ticket.priority}</td>
 					<td>${ticket.accOwner}</td>
 					<td>
-						<button class="btn btn-primary" onclick="location.href='editTicket?id=${ticket.id}'">Edit</button>
+						<button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-danger" onclick="location.href='deleteTicket?id=${ticket.id}'">Delete</button>
+						<button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
 					</td>
 							
 	        	</tr>
@@ -57,3 +64,4 @@
     	</div>
     </body>
 </html>
+</sec:authorize>

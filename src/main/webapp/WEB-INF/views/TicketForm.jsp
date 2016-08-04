@@ -14,6 +14,7 @@
 
     <title>New/Edit Ticket</title>
 </head>
+
 <jsp:include page="header.jsp" />
 <body>
 <div id="msg"></div>
