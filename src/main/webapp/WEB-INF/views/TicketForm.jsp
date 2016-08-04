@@ -9,11 +9,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<c:url value="/resources/js/jsmain.js" />"></script>
 
     <title>New/Edit Ticket</title>
 </head>
 <jsp:include page="header.jsp" />
 <body>
+<div id="msg"></div>
 	<div class="container">
 		<h1>New/Edit Ticket</h1>
 		<form:form action="saveTicket" method="post" modelAttribute="TicketForm">

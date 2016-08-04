@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import com.tickets.dao.TicketDAO;
+import com.tickets.dao.UserDAO;
 import com.tickets.model.Ticket;
+import com.tickets.model.User;
 import com.tickets.validator.NewTicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * This controller routes accesses to the application to the appropriate
@@ -30,6 +34,8 @@ public class HomeController {
 	//private final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private TicketDAO ticketDAO;
+	@Autowired
+	private UserDAO userDAO;
 	@Autowired
 	NewTicketValidator ticketFormValidator;
 
@@ -53,6 +59,17 @@ public class HomeController {
 		
 		return model;
 	}
+
+	@RequestMapping(value="/users")
+    public ModelAndView listuser(ModelAndView model) throws IOException{
+        List<User> listuser = userDAO.listuser("luki");
+        model.addObject("listuser", listuser);
+        model.setViewName("userLogin");
+
+        return model;
+    }
+
+
 	
 	@RequestMapping(value = "/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {

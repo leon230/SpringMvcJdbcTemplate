@@ -3,20 +3,28 @@ package com.tickets.config;
 import javax.sql.DataSource;
 import com.tickets.dao.TicketDAOImpl;
 import com.tickets.dao.TicketDAO;
+import com.tickets.dao.UserDAO;
+import com.tickets.dao.UserDAOImpl;
+import org.springframework.beans.factory.support.ManagedMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-@EnableWebMvc
+import java.util.Map;
+
 @Configuration
+@EnableWebMvc
 @ComponentScan(basePackages="com.tickets")
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
@@ -56,5 +64,25 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public TicketDAO getTicketDAO() {
 		return new TicketDAOImpl(getDataSource());
 	}
+
+	@Bean
+	public UserDAO getUserDAO() {
+		return new UserDAOImpl(getDataSource());
+	}
+
+//	@Bean
+//	public DefaultServletHttpRequestHandler defaultServletHttpRequestHandler() {
+//		return new DefaultServletHttpRequestHandler();
+
+	//default server map
+//	@Bean
+//	public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
+//		Map<String, String> urlMap = new ManagedMap<String, String>();
+//		urlMap.put("/**", "");
+//
+//		SimpleUrlHandlerMapping hm = new SimpleUrlHandlerMapping();
+//		hm.setUrlMap(urlMap);
+//		return hm;
+//	}
 
 }

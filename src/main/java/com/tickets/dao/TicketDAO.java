@@ -3,6 +3,7 @@ package com.tickets.dao;
 import java.util.List;
 
 import com.tickets.model.Ticket;
+import com.tickets.model.User;
 
 /**
  * Defines DAO operations for the contact model.

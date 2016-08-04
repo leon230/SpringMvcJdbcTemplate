@@ -8,12 +8,16 @@
 
 <spring:url value="/" var="urlHome" />
 <spring:url value="/newTicket" var="urlAddTicket" />
+<spring:url value="/users" var="urlUsers" />
 
 <nav class="navbar navbar-inverse ">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="${urlHome}">Home</a>
 		</div>
+		<div class="navbar-header">
+            <a class="navbar-brand" href="${urlUsers}">Home</a>
+        </div>
 		<div id="navbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="${urlAddTicket}">Add Ticket</a></li>

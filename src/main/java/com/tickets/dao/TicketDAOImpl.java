@@ -6,6 +6,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.tickets.model.Ticket;
+import com.tickets.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
