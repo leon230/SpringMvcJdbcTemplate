@@ -55,7 +55,10 @@
 					<td>
 						<button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
+						 <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                            <button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
+                         </c:if>
+
 					</td>
 							
 	        	</tr>
