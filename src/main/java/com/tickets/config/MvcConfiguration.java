@@ -9,6 +9,7 @@ import org.springframework.beans.factory.support.ManagedMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
@@ -26,6 +27,7 @@ import java.util.Map;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages="com.tickets")
+@Import({ WebSecurityConfig.class })
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean
@@ -49,7 +51,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
         return ResourceBundleMessageSource;
     }
 
-	@Bean
+	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
