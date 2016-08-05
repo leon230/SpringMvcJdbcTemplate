@@ -22,7 +22,7 @@
     	<div class="wrapper">
 	        <h1>Ticket List</h1>
 	        <table class="mainTable">
-	        	<th>No</th>
+	            <th>Action</th>
 	        	<th>ID</th>
 	        	<th>Ticket number</th>
 	        	<th>Title</th>
@@ -35,12 +35,19 @@
 	        	<th>Status</th>
 	        	<th>Priority</th>
 	        	<th>Oracle ticket num</th>
-	        	<th>Action</th>
+	        	<th>No</th>
 	        	
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
 	        	<tr>
-	        		<td>${status.index + 1}</td>
-	        		<td>${ticket.id}</td>
+	        	<td>
+                    <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                     <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                        <button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
+                     </c:if>
+
+                </td>
+                    <td>${ticket.id}</td>
 					<td>${ticket.number}</td>
 					<td>${ticket.title}</td>
 					<td>${ticket.owner}</td>
@@ -52,14 +59,8 @@
 					<td>${ticket.tstatus}</td>
 					<td>${ticket.priority}</td>
 					<td>${ticket.accOwner}</td>
-					<td>
-						<button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-                            <button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
-                         </c:if>
+					<td>${status.index + 1}</td>
 
-					</td>
 							
 	        	</tr>
 				</c:forEach>	        	
