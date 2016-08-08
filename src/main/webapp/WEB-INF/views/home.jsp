@@ -21,7 +21,8 @@
     <body>
     	<div class="wrapper">
 	        <h1>Ticket List</h1>
-	        <table class="mainTable">
+	        <table class="mainTable" id ="mainTable">
+	        <thead>
 	            <th>Action</th>
 	        	<th>ID</th>
 	        	<th>Ticket number</th>
@@ -36,7 +37,8 @@
 	        	<th>Priority</th>
 	        	<th>Oracle ticket num</th>
 	        	<th>No</th>
-	        	
+	        	</thead>
+	        	<tbody>
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
 	        	<tr>
 	        	<td>
@@ -63,6 +65,7 @@
 
 							
 	        	</tr>
+	        	</tbody>
 				</c:forEach>	        	
 			</table>
     	</div>

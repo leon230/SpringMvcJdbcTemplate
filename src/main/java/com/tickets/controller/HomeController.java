@@ -80,7 +80,7 @@ public class HomeController {
 	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
 		Ticket newTicket = new Ticket();
-		SimpleDateFormat printFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat printFormat = new SimpleDateFormat("yyyyMMdd_kkmmss");
 		Date date = new Date();
 		newTicket.setNumber(System.getProperty("user.name") + "_" + printFormat.format(date));
 		newTicket.setReportedBy(System.getProperty("user.name"));
