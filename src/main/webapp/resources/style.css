@@ -19,6 +19,10 @@ body {
     background-color: #4CAF50;
     color: white;
 }
+.mainTable td {
+    padding-left: 3px;
+    padding-right: 3px;
+}
 .error {
 	color: #ff0000;
 }
