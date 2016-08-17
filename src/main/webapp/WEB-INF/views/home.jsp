@@ -31,7 +31,7 @@
 	        	<th>Cluster</th>
 	        	<th>Open Date</th>
 	        	<th>Close Date</th>
-	        	<th>Description</th>
+	        	<th min-width: "300px">Description</th>
 	        	<th>Reported by</th>
 	        	<th>Status</th>
 	        	<th>Priority</th>
@@ -49,14 +49,14 @@
                      </c:if>
 
                 </td>
-                    <td>${ticket.id}</td>
+                    <td class = "shortCol">${ticket.id}</td>
 					<td>${ticket.number}</td>
-					<td>${ticket.title}</td>
+					<td class = "longCol">${ticket.title}</td>
 					<td>${ticket.owner}</td>
 					<td>${ticket.cluster}</td>
 					<td>${ticket.openDate}</td>
 					<td>${ticket.closeDate}</td>
-					<td>${ticket.description}</td>
+					<td class = "longCol"><div class = "longText">${ticket.description}</div></td>
 					<td>${ticket.reportedBy}</td>
 					<td>${ticket.tstatus}</td>
 					<td>${ticket.priority}</td>

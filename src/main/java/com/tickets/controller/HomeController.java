@@ -65,7 +65,6 @@ public class HomeController {
 		return model;
 	}
 
-
 	@RequestMapping(value="/home/users")
     public ModelAndView listuser(ModelAndView model) throws IOException{
         List<User> listuser = userDAO.listuser("luki");
@@ -74,8 +73,6 @@ public class HomeController {
 
         return model;
     }
-
-
 	
 	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
@@ -130,6 +127,7 @@ public class HomeController {
 		clusterList.add("Billing");
 		clusterList.add("Reporting");
 		clusterList.add("OPS");
+		clusterList.add("UTMS");
 		clusterList.add("SAP");
 		clusterList.add("Other");
 		model.addObject("clusters", clusterList);
