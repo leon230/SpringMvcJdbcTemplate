@@ -1,7 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page session="true"%>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Basic KPI charts</title>
@@ -43,8 +42,9 @@
             }
         </script>
     </head>
-
+<div class = "headerbar">
 <jsp:include page="../header.jsp" />
+</div>
 <body>
 <h1>${title}</h1>
  <div>
@@ -52,8 +52,6 @@
     </div>
 
 <div id="chart_div"></div>
-
-
 </body>
 </html>
 <body>

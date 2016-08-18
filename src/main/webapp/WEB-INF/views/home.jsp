@@ -16,8 +16,9 @@
 
     <c:url value="home/editTicket?id=" var="editTicket" />
     <c:url value="home/deleteTicket?id=" var="deleteTicket" />
-
+<div class = "headerbar">
 <jsp:include page="header.jsp" />
+</div>
     <body>
     	<div class="wrapper">
 	        <h1>Ticket List</h1>

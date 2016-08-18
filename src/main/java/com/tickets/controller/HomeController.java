@@ -170,8 +170,8 @@ public class HomeController {
 		return model;
 
 	}
-	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
+	@RequestMapping(value = "/charts**", method = RequestMethod.GET)
+	public ModelAndView chartsPage() {
 		List<ChartKeyValue> pieDataList = chartsDAO.getPieChartData();
 
 		ModelAndView model = new ModelAndView();
