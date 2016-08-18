@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +15,6 @@ import java.util.List;
 public class ChartsDAOImpl implements ChartsDAO {
 
     private JdbcTemplate jdbcTemplate;
-//    private List<ChartKeyValue> pieDataList =  new List<ChartKeyValue>();
     public ChartsDAOImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }

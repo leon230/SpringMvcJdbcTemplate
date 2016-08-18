@@ -176,8 +176,8 @@ public class HomeController {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("pieDataList", pieDataList);
-		model.addObject("title", "Charts");
-		model.setViewName("admin");
+		model.addObject("title", "Basic KPI");
+		model.setViewName("charts/BasicKpi");
 
 		return model;
 
