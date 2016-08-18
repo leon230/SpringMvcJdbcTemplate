@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
-import com.tickets.data.PieChartData;
-import com.tickets.model.ChartKeyValue;
 import com.tickets.model.Ticket;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

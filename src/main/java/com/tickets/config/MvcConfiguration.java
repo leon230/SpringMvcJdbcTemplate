@@ -67,9 +67,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	}
 
 	@Bean
-	public ChartsDAO getchartsDAO() {
-		return new ChartsDAOImpl();
-	}
+	public ChartsDAO getchartsDAO() {return new ChartsDAOImpl(getDataSource());}
 
 //	@Bean
 //	public DefaultServletHttpRequestHandler defaultServletHttpRequestHandler() {

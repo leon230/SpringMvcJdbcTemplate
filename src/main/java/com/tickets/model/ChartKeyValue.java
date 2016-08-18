@@ -7,6 +7,9 @@ public class ChartKeyValue {
     String key;
     String value;
 
+    public ChartKeyValue(){
+
+    }
     public ChartKeyValue(String key, String value) {
         super();
         this.key = key;
