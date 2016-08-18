@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
+
+import com.tickets.dao.ChartsDAO;
 import com.tickets.dao.TicketDAO;
 import com.tickets.dao.UserDAO;
+import com.tickets.model.ChartKeyValue;
 import com.tickets.model.Ticket;
 import com.tickets.model.User;
 import com.tickets.validator.NewTicketValidator;
@@ -35,6 +38,8 @@ public class HomeController {
 	//private final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private TicketDAO ticketDAO;
+	@Autowired
+	private ChartsDAO chartsDAO;
 	@Autowired
 	private UserDAO userDAO;
 	@Autowired
@@ -167,8 +172,10 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
+		List<ChartKeyValue> pieDataList = chartsDAO.getPieChartData();
 
 		ModelAndView model = new ModelAndView();
+		model.addObject("pieDataList", pieDataList);
 		model.addObject("title", "Charts");
 		model.setViewName("admin");
 

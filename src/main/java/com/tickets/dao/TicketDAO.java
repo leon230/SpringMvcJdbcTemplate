@@ -2,6 +2,7 @@ package com.tickets.dao;
 
 import java.util.List;
 
+import com.tickets.model.ChartKeyValue;
 import com.tickets.model.Ticket;
 import com.tickets.model.User;
 

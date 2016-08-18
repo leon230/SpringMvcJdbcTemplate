@@ -1,10 +1,8 @@
 package com.tickets.config;
 
 import javax.sql.DataSource;
-import com.tickets.dao.TicketDAOImpl;
-import com.tickets.dao.TicketDAO;
-import com.tickets.dao.UserDAO;
-import com.tickets.dao.UserDAOImpl;
+
+import com.tickets.dao.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -66,6 +64,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public UserDAO getUserDAO() {
 		return new UserDAOImpl(getDataSource());
+	}
+
+	@Bean
+	public ChartsDAO getchartsDAO() {
+		return new ChartsDAOImpl();
 	}
 
 //	@Bean
