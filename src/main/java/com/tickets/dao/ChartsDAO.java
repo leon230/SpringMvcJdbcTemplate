@@ -7,5 +7,8 @@ import java.util.List;
  * Created by lukasz.homik on 2016-08-18.
  */
 public interface ChartsDAO {
-    public List<ChartKeyValue> getPieChartData();
+    public List<ChartKeyValue> getProgressData();
+
+    public List<ChartKeyValue> getPriorityData();
+
 }

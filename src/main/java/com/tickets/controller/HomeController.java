@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-
 import com.tickets.dao.ChartsDAO;
 import com.tickets.dao.TicketDAO;
 import com.tickets.dao.UserDAO;
@@ -24,12 +23,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * This controller routes accesses to the application to the appropriate
- * hanlder methods.
  *
  */
 @Controller
@@ -170,17 +165,21 @@ public class HomeController {
 		return model;
 
 	}
+/**
+ * Charts Data mappring
+ */
 	@RequestMapping(value = "/charts**", method = RequestMethod.GET)
 	public ModelAndView chartsPage() {
-		List<ChartKeyValue> pieDataList = chartsDAO.getPieChartData();
+		List<ChartKeyValue> progressData = chartsDAO.getProgressData();
+		List<ChartKeyValue> priorityData = chartsDAO.getPriorityData();
 
 		ModelAndView model = new ModelAndView();
-		model.addObject("pieDataList", pieDataList);
+		model.addObject("progressDataList", progressData);
+		model.addObject("priorityDataList", priorityData);
 		model.addObject("title", "Basic KPI");
 		model.setViewName("charts/BasicKpi");
 
 		return model;
-
 	}
 	//for 403 access denied page
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
