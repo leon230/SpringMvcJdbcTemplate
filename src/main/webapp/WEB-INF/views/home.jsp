@@ -21,7 +21,7 @@
 </div>
     <body>
     	<div class="wrapper">
-	        <h1>Ticket List</h1>
+	        <h1>${title}</h1>
 	        <table class="mainTable" id ="mainTable">
 	        <thead>
 	            <th>Action</th>

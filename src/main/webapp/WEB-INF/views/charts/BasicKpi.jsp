@@ -71,12 +71,14 @@
 </div>
 <body>
 <h1>${title}</h1>
+<div align = "center">
 	<table>
       <tr>
-        <td class = "chart_border"><div id="chart_div"></div></td>
-        <td class = "chart_border"><div id="Prioritychart_div"></div></td>
+        <td class = "chart_divopa"><div id="chart_div"></div></td>
+        <td class = "chart_divopa"><div id="Prioritychart_div"></div></td>
       </tr>
     </table>
+</div>
 
 
 </body>

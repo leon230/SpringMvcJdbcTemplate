@@ -60,6 +60,7 @@ public class HomeController {
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
 		model.addObject("listTicket", listTicket);
+		model.addObject("title", "Tickets list");
 		model.setViewName("home");
 
 		return model;
