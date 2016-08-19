@@ -58,4 +58,27 @@ public class ChartsDAOImpl implements ChartsDAO {
         return DataList;
     }
 
+    @Override
+    public List<ChartKeyValue> getPrioritySolveData() {
+        String sql = "SELECT distinct concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) as c_date" +
+                ",(select count(id) from tickets where priority = 'High' AND concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) = concat(year(INSERT_DATE),month(INSERT_DATE))) as c_high" +
+                ",(select count(id) from tickets where priority = 'Medium' AND concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) = concat(year(INSERT_DATE),month(INSERT_DATE))) as c_med" +
+                ",(select count(id) from tickets where priority = 'Low' AND concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) = concat(year(INSERT_DATE),month(INSERT_DATE))) as c_low " +
+                "from tickets t";
+        List<ChartKeyValue> DataList = jdbcTemplate.query(sql, new RowMapper<ChartKeyValue>() {
+
+            @Override
+            public ChartKeyValue mapRow(ResultSet rs, int rowNum) throws SQLException {
+                ChartKeyValue key = new ChartKeyValue();
+                key.setKey(rs.getString("c_date"));
+                key.setValue(rs.getString("c_high"));
+                key.setValue2(rs.getString("c_med"));
+                key.setValue3(rs.getString("c_low"));
+
+                return key;
+            }
+        });
+        return DataList;
+    }
+
 }

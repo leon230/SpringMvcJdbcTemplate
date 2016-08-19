@@ -14,6 +14,7 @@
             // Set a callback to run when the Google Visualization API is loaded.
             google.setOnLoadCallback(drawProgressChart);
             google.setOnLoadCallback(drawPriorityChart);
+            google.setOnLoadCallback(drawPrioritySolveChart);
 
             // Callback that creates and populates a data table,
             // instantiates the pie chart, passes in the data and
@@ -38,8 +39,18 @@
                 };
 
                 // Instantiate and draw our chart, passing in some options.
-                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+				var ProgressChart_div = document.getElementById('ProgressChart_div');
+				var chart = new google.visualization.PieChart(ProgressChart_div);
+
+				// Wait for the chart to finish drawing before calling the getImageURI() method.
+							  google.visualization.events.addListener(chart, 'ready', function () {
+								ProgressChart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+								console.log(ProgressChart_div.innerHTML);
+							  });
+
+
                 chart.draw(data, options);
+				document.getElementById('ProgressChart_prnt').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version</a>';
             }
 			function drawPriorityChart() {
 
@@ -61,21 +72,83 @@
                 };
 
                 // Instantiate and draw our chart, passing in some options.
-                var chart = new google.visualization.PieChart(document.getElementById('Prioritychart_div'));
+				var Prioritychart_div = document.getElementById('Prioritychart_div');
+                var chart = new google.visualization.PieChart(Prioritychart_div);
+
+				// Wait for the chart to finish drawing before calling the getImageURI() method.
+							  google.visualization.events.addListener(chart, 'ready', function () {
+								Prioritychart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+								console.log(Prioritychart_div.innerHTML);
+							  });
+
                 chart.draw(dataPriority, optionsPriority);
+				document.getElementById('Prioritychart_prnt').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version</a>';
             }
+            function drawPrioritySolveChart() {
+
+                            // Create the data table.
+                            var dataPrioritySolve = google.visualization.arrayToDataTable([
+                                                                                  ['Year','High', 'Medium', 'Low', { role: 'annotation' } ],
+                                                                                  <c:forEach items="${prioritySolveDataList}" var="entry">
+                                                                                      ['${entry.key}',
+																					  ${entry.value},
+																					  ${entry.value2},
+																					  ${entry.value3},
+																					  '' ],
+                                                                                  </c:forEach>
+                                                                            ]);
+                            // Set chart options
+                            var optionsPrioritySolve = {
+                                legend: { position: 'top', maxLines: 3 },
+								isStacked: 'percent',
+								Text: 'label',
+                                bar: { groupWidth: '75%' },
+                                'width' : 600,
+                                'height' : 400,
+								vAxis: {
+								minValue: 0,
+								ticks: [0, .3, .6, .9, 1]
+							  },
+							   series: {
+								0:{color:'red'},
+								1:{color:'orange'},
+								2:{color:'green'}
+							  }
+
+                            };
+
+                            // Instantiate and draw our chart, passing in some options.
+							var PrioritySolvechart_div = document.getElementById('PrioritySolvechart_div');
+                            var chart = new google.visualization.ColumnChart(PrioritySolvechart_div);
+
+							// Wait for the chart to finish drawing before calling the getImageURI() method.
+							  google.visualization.events.addListener(chart, 'ready', function () {
+								PrioritySolvechart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+								console.log(PrioritySolvechart_div.innerHTML);
+							  });
+
+                            chart.draw(dataPrioritySolve, optionsPrioritySolve);
+							document.getElementById('PrioritySolvechart_prnt').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version</a>';
+                        }
         </script>
     </head>
 <div class = "headerbar">
 <jsp:include page="../header.jsp" />
 </div>
 <body>
+
+
+
+
 <h1>${title}</h1>
 <div align = "center">
 	<table>
       <tr>
-        <td class = "chart_divopa"><div id="chart_div"></div></td>
-        <td class = "chart_divopa"><div id="Prioritychart_div"></div></td>
+        <td class = "chart_td"><div id="ProgressChart_div"></div><div id='ProgressChart_prnt'></div></td>
+        <td class = "chart_td"><div id="Prioritychart_div"></div><div id='Prioritychart_prnt'></div></td>
+	  <tr>
+		<td class = "chart_td"><div id="PrioritySolvechart_div"></div><div id='PrioritySolvechart_prnt'></div></td>
+	  </tr>
       </tr>
     </table>
 </div>

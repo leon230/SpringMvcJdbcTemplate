@@ -11,4 +11,6 @@ public interface ChartsDAO {
 
     public List<ChartKeyValue> getPriorityData();
 
+    public List<ChartKeyValue> getPrioritySolveData();
+
 }

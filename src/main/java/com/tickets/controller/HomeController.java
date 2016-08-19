@@ -173,10 +173,12 @@ public class HomeController {
 	public ModelAndView chartsPage() {
 		List<ChartKeyValue> progressData = chartsDAO.getProgressData();
 		List<ChartKeyValue> priorityData = chartsDAO.getPriorityData();
+		List<ChartKeyValue> prioritySolveData = chartsDAO.getPrioritySolveData();
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("progressDataList", progressData);
 		model.addObject("priorityDataList", priorityData);
+		model.addObject("prioritySolveDataList", prioritySolveData);
 		model.addObject("title", "Basic KPI");
 		model.setViewName("charts/BasicKpi");
 

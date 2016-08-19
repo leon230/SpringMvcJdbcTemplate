@@ -5,6 +5,8 @@ package com.tickets.model;
  */
 public class ChartKeyValue {
     String key;
+    String value2;
+    String value3;
     String value;
 
     public ChartKeyValue(){
@@ -22,6 +24,22 @@ public class ChartKeyValue {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getValue2() {
+        return value2;
+    }
+
+    public void setValue2(String value) {
+        this.value2 = value;
+    }
+
+    public String getValue3() {
+        return value3;
+    }
+
+    public void setValue3(String value) {
+        this.value3 = value;
     }
 
     public String getValue() {
