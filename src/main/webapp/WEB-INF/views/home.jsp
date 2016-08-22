@@ -3,6 +3,7 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <sec:authorize access="hasRole('ROLE_USER')">
 
@@ -20,6 +21,11 @@
 <jsp:include page="header.jsp" />
 </div>
     <body>
+    <h2>The courses you selected are shown below:</h2>
+    	<br>
+    	<c:forEach var="course" items="${member.courses}">
+    			<c:out value="${course}"/><br>
+    	</c:forEach>
     	<div class="wrapper">
 	        <h1>${title}</h1>
 	        <table class="mainTable" id ="mainTable">
@@ -41,7 +47,7 @@
 	        	</thead>
 	        	<tbody>
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
-				<c:if test = "${ticket.cluster != 'UTMddS'}">
+				<c:if test = "${ticket.cluster != 'Reportingsss'}">
 
 
 					<tr>

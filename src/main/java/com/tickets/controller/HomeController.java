@@ -60,6 +60,8 @@ public class HomeController {
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
+//		DataFilter df = new DataFilter(true);
+//		model.addObject("isclosed", df.getIsClosed());
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");
 		model.addObject("title2", "is checked");
