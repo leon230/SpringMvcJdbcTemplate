@@ -56,11 +56,13 @@ public class HomeController {
 	public String redirect(){
 		return "redirect:/home";
 	}
+
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");
+		model.addObject("title2", "is checked");
 		model.setViewName("home");
 
 		return model;

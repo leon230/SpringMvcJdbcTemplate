@@ -41,31 +41,35 @@
 	        	</thead>
 	        	<tbody>
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
-	        	<tr>
-	        	<td>
-                    <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                     <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-                        <button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
-                     </c:if>
+				<c:if test = "${ticket.cluster != 'UTMddS'}">
 
-                </td>
-                    <td class = "shortCol">${ticket.id}</td>
-					<td>${ticket.number}</td>
-					<td class = "longCol">${ticket.title}</td>
-					<td>${ticket.owner}</td>
-					<td>${ticket.cluster}</td>
-					<td>${ticket.openDate}</td>
-					<td>${ticket.closeDate}</td>
-					<td class = "longCol"><div class = "longText">${ticket.description}</div></td>
-					<td>${ticket.reportedBy}</td>
-					<td>${ticket.tstatus}</td>
-					<td>${ticket.priority}</td>
-					<td>${ticket.accOwner}</td>
-					<td>${status.index + 1}</td>
 
-							
-	        	</tr>
+					<tr>
+					<td>
+						<button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						 <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+							<button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
+						 </c:if>
+
+					</td>
+						<td class = "shortCol">${ticket.id}</td>
+						<td>${ticket.number}</td>
+						<td class = "longCol">${ticket.title}</td>
+						<td>${ticket.owner}</td>
+						<td>${ticket.cluster}</td>
+						<td>${ticket.openDate}</td>
+						<td>${ticket.closeDate}</td>
+						<td class = "longCol"><div class = "longText">${ticket.description}</div></td>
+						<td>${ticket.reportedBy}</td>
+						<td>${ticket.tstatus}</td>
+						<td>${ticket.priority}</td>
+						<td>${ticket.accOwner}</td>
+						<td>${status.index + 1}</td>
+
+
+					</tr>
+				</c:if>
 	        	</tbody>
 				</c:forEach>	        	
 			</table>
