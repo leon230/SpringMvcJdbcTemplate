@@ -8,6 +8,7 @@ import com.tickets.dao.ChartsDAO;
 import com.tickets.dao.TicketDAO;
 import com.tickets.dao.UserDAO;
 import com.tickets.model.ChartKeyValue;
+import com.tickets.model.Member;
 import com.tickets.model.Ticket;
 import com.tickets.model.User;
 import com.tickets.validator.NewTicketValidator;
@@ -35,8 +36,8 @@ public class HomeController {
 	private TicketDAO ticketDAO;
 	@Autowired
 	private ChartsDAO chartsDAO;
-	@Autowired
-	private UserDAO userDAO;
+//	@Autowired
+//	private UserDAO userDAO;
 	@Autowired
 	NewTicketValidator ticketFormValidator;
 
@@ -62,6 +63,11 @@ public class HomeController {
 		List<Ticket> listTicket = ticketDAO.list();
 //		DataFilter df = new DataFilter(true);
 //		model.addObject("isclosed", df.getIsClosed());
+		Member mem = new Member();
+//		List<String> preCheckedVals = new ArrayList<String>();
+//		preCheckedVals.add("UTMS");
+//		mem.setCourses(preCheckedVals);
+		model.addObject("member",mem);
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");
 		model.addObject("title2", "is checked");
@@ -70,14 +76,14 @@ public class HomeController {
 		return model;
 	}
 
-	@RequestMapping(value="/home/users")
-    public ModelAndView listuser(ModelAndView model) throws IOException{
-        List<User> listuser = userDAO.listuser("luki");
-        model.addObject("listuser", listuser);
-        model.setViewName("userLogin");
-
-        return model;
-    }
+//	@RequestMapping(value="/home/users")
+//    public ModelAndView listuser(ModelAndView model) throws IOException{
+//        List<User> listuser = userDAO.listuser("luki");
+//        model.addObject("listuser", listuser);
+//        model.setViewName("userLogin");
+//
+//        return model;
+//    }
 	
 	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
@@ -89,7 +95,9 @@ public class HomeController {
 		newTicket.setTstatus("In queue");
 		model.addObject("TicketForm", newTicket);
 		model.setViewName("TicketForm");
-		initModelList(model);
+		model.addObject("clusters", Ticket.getClustersList());
+		model.addObject("statuses", Ticket.getStatusesList());
+		model.addObject("priorities", Ticket.getPrioritiesList());
 		return model;
 	}
 
@@ -97,7 +105,9 @@ public class HomeController {
     public ModelAndView CheckForm(@ModelAttribute ("TicketForm") @Validated Ticket ticket, BindingResult result
 			, ModelAndView model) {
         if (result.hasErrors()) {
-			initModelList(model);
+			model.addObject("clusters", Ticket.getClustersList());
+			model.addObject("statuses", Ticket.getStatusesList());
+			model.addObject("priorities", Ticket.getPrioritiesList());
 			//model.setViewName("TicketForm");
 			return new ModelAndView("TicketForm");
         }
@@ -120,36 +130,16 @@ public class HomeController {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
 		Ticket ticket = ticketDAO.get(ticketId);
 		ModelAndView model = new ModelAndView("TicketForm");
-		initModelList(model);
+		model.addObject("clusters", Ticket.getClustersList());
+		model.addObject("statuses", Ticket.getStatusesList());
+		model.addObject("priorities", Ticket.getPrioritiesList());
 		model.addObject("TicketForm", ticket);
 		
 		return model;
 	}
 
 	//@ModelAttribute("clusters")
-	private void initModelList(ModelAndView model) {
-		List<String> clusterList = new ArrayList<String>();
-		clusterList.add("Billing");
-		clusterList.add("Reporting");
-		clusterList.add("OPS");
-		clusterList.add("UTMS");
-		clusterList.add("SAP");
-		clusterList.add("Other");
-		model.addObject("clusters", clusterList);
 
-		List<String> statuses = new ArrayList<String>();
-		statuses.add("In queue");
-		statuses.add("In progress");
-		statuses.add("Sent for testing");
-		statuses.add("Closed");
-		model.addObject("statuses", statuses);
-
-		List<String> priorities = new ArrayList<String>();
-		priorities.add("High");
-		priorities.add("Medium");
-		priorities.add("Low");
-		model.addObject("priorities", priorities);
-	}
 /**
  * Security mapping
  */

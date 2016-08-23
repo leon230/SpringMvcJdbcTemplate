@@ -2,9 +2,12 @@ package com.tickets.model;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Leon on 2016-07-31.
@@ -23,7 +26,10 @@ public class Ticket {
     private String tstatus;
     private String accOwner;
 
+    private static List<String> clusterList,statuses,priorities;
+
     public Ticket() {
+        initModelList();
     }
 
     public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
@@ -40,7 +46,34 @@ public class Ticket {
         this.tstatus = tstatus;
         this.accOwner = accOwner;
 
+        initModelList();
     }
+
+    private void initModelList() {
+        clusterList = new ArrayList<String>();
+        clusterList.add("Billing");
+        clusterList.add("Reporting");
+        clusterList.add("OPS");
+        clusterList.add("UTMS");
+        clusterList.add("SAP");
+        clusterList.add("Other");
+
+        statuses = new ArrayList<String>();
+        statuses.add("In queue");
+        statuses.add("In progress");
+        statuses.add("Sent for testing");
+        statuses.add("Closed");
+
+        priorities = new ArrayList<String>();
+        priorities.add("High");
+        priorities.add("Medium");
+        priorities.add("Low");
+
+    }
+
+    public static List<String> getClustersList(){return clusterList;}
+    public static List<String> getStatusesList(){return statuses;}
+    public static List<String> getPrioritiesList(){return priorities;}
 
     public int getId() {
         return id;

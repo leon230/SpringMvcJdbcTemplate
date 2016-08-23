@@ -21,16 +21,12 @@ public class MemberController {
     @RequestMapping(value = "/filter**", method = RequestMethod.GET)
     public String initForm(Model model) {
         Member member = new Member();
-        List<String> preCheckedVals = new ArrayList<String>();
-        preCheckedVals.add("Reporting");
-        member.setCourses(preCheckedVals);
+        //List<String> preCheckedVals = new ArrayList<String>();
+        //preCheckedVals.add("Reporting");
+        //member.setCourses(preCheckedVals);
         model.addAttribute("member", member);
         List<String> courses = new ArrayList<String>();
-        courses.add("Reporting");
-        courses.add("Stretching");
-        courses.add("Pilates");
-        courses.add("Aerobic");
-        courses.add("Oriental");
+        courses = Ticket.getClustersList();
         model.addAttribute("courses", courses);
         return "filter/member";
     }

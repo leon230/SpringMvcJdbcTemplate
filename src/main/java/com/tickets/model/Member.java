@@ -6,7 +6,7 @@ public class Member {
 
     private boolean newMember;
 
-    private List<String> courses;
+    private static List<String> courses;
 
     public boolean isNewMember() {
         return newMember;
