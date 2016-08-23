@@ -21,11 +21,8 @@
 <jsp:include page="header.jsp" />
 </div>
     <body>
-    <h2>The courses you selected are shown below:</h2>
+    <a href="./filter"> Filter data </a>
     	<br>
-    	<c:forEach var="course" items="${member.courses}">
-    			<c:out value="${course}"/><br>
-    	</c:forEach>
     	<div class="wrapper">
 	        <h1>${title}</h1>
 	        <table class="mainTable" id ="mainTable">
@@ -47,37 +44,38 @@
 	        	</thead>
 	        	<tbody>
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
-				<c:if test = "${ticket.cluster != 'Reportingsss'}">
+                    <c:forEach var="course" items="${filter.courses}">
+                        <c:if test = "${ticket.cluster == course}">
+
+                            <tr>
+                            <td>
+                                <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                 <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                                    <button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
+                                 </c:if>
+
+                            </td>
+                                <td class = "shortCol">${ticket.id}</td>
+                                <td>${ticket.number}</td>
+                                <td class = "longCol">${ticket.title}</td>
+                                <td>${ticket.owner}</td>
+                                <td>${ticket.cluster}</td>
+                                <td>${ticket.openDate}</td>
+                                <td>${ticket.closeDate}</td>
+                                <td class = "longCol"><div class = "longText">${ticket.description}</div></td>
+                                <td>${ticket.reportedBy}</td>
+                                <td>${ticket.tstatus}</td>
+                                <td>${ticket.priority}</td>
+                                <td>${ticket.accOwner}</td>
+                                <td>${status.index + 1}</td>
 
 
-					<tr>
-					<td>
-						<button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-							<button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
-						 </c:if>
-
-					</td>
-						<td class = "shortCol">${ticket.id}</td>
-						<td>${ticket.number}</td>
-						<td class = "longCol">${ticket.title}</td>
-						<td>${ticket.owner}</td>
-						<td>${ticket.cluster}</td>
-						<td>${ticket.openDate}</td>
-						<td>${ticket.closeDate}</td>
-						<td class = "longCol"><div class = "longText">${ticket.description}</div></td>
-						<td>${ticket.reportedBy}</td>
-						<td>${ticket.tstatus}</td>
-						<td>${ticket.priority}</td>
-						<td>${ticket.accOwner}</td>
-						<td>${status.index + 1}</td>
-
-
-					</tr>
-				</c:if>
-	        	</tbody>
-				</c:forEach>	        	
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+				</c:forEach>
+			</tbody>
 			</table>
     	</div>
     </body>

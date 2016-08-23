@@ -20,13 +20,19 @@
        <body>
        	<h2>Ticket filter</h2>
 <div class="container">
-       	<form:form action="ApplyFilter" method="post" modelAttribute="member">
+       	<form:form action="ApplyFilter" method="post" modelAttribute="filter">
 		<div class="form-group">
 				<label class="col-sm-2 control-label">Cluster:</label>
 				<div class="col-sm-10">
 					<p><form:checkboxes path="courses" items="${courses}" /></p>
 				</div>
-			</div>
+		</div>
+		<div class="form-group">
+        			<div class="col-sm-offset-2 col-sm-10">
+        				<input type="submit" name="submit" value="Submit">
+        			</div>
+        		    </div>
+
 
        	</form:form>
 </div>

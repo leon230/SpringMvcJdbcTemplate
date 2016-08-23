@@ -148,9 +148,9 @@
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="submit" value="Save">
-				<a href="/TicketSys/home"> Cancel </a>
+				<a href="./home"> Cancel </a>
 			</div>
-		</div>
+		    </div>
 
 
 

@@ -2,7 +2,7 @@ package com.tickets.model;
 
 import java.util.List;
 
-public class Member {
+public class Filter {
 
     private boolean newMember;
 
