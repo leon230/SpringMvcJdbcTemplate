@@ -150,6 +150,9 @@ public class HomeController {
 		if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
 		}
+		Filter filter = new Filter();
+		Ticket t = new Ticket();
+        filter.setCourses(t.getClustersList());
 		model.setViewName("login");
 
 		return model;

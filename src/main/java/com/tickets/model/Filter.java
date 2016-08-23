@@ -4,17 +4,9 @@ import java.util.List;
 
 public class Filter {
 
-    private boolean newMember;
 
     private static List<String> courses;
 
-    public boolean isNewMember() {
-        return newMember;
-    }
-
-    public void setNewMember(boolean newMember) {
-        this.newMember = newMember;
-    }
 
     public List<String> getCourses() {
         return courses;
