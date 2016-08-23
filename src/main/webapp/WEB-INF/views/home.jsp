@@ -44,8 +44,8 @@
 	        	</thead>
 	        	<tbody>
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
-                    <c:forEach var="course" items="${filter.courses}">
-                        <c:if test = "${ticket.cluster == course}">
+                    <c:forEach var="cluster" items="${filter.clusters}">
+                        <c:if test = "${ticket.cluster == cluster}">
 
                             <tr>
                             <td>

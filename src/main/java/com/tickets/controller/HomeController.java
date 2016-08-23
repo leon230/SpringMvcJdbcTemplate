@@ -152,7 +152,9 @@ public class HomeController {
 		}
 		Filter filter = new Filter();
 		Ticket t = new Ticket();
-        filter.setCourses(t.getClustersList());
+        filter.setClusters(t.getClustersList());
+		filter.setPriorities(t.getPrioritiesList());
+		filter.setStatuses(t.getStatusesList());
 		model.setViewName("login");
 
 		return model;

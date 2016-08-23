@@ -24,7 +24,7 @@
 		<div class="form-group">
 				<label class="col-sm-2 control-label">Cluster:</label>
 				<div class="col-sm-10">
-					<p><form:checkboxes path="courses" items="${courses}" /></p>
+					<p><form:checkboxes path="clusters" items="${clusters}" /></p>
 				</div>
 		</div>
 		<div class="form-group">
