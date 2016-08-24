@@ -18,6 +18,8 @@
 
 <jsp:include page="header.jsp" />
 <body>
+
+
 <div id="msg"></div>
 	<div class="container">
 		<h1>New/Edit Ticket</h1>
@@ -148,7 +150,7 @@
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="submit" value="Save">
-				<a href="./home"> Cancel </a>
+				<a href="./"> Cancel </a>
 			</div>
 		    </div>
 

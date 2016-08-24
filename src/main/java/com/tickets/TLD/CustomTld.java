@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by lukasz.homik on 2016-08-24.
  */
-public class TextTLD extends SimpleTagSupport {
+public class CustomTld extends SimpleTagSupport {
 
     public static boolean contains(List list, Object o){
 

@@ -45,9 +45,9 @@
 	        	<th>No</th>
 	        	</thead>
 	        	<tbody>
-				<c:set var="cluster" value="${filter.clusters}"/>
-				<c:set var="tstatus" value="${filter.statuses}"/>
-				<c:set var="priority" value="${filter.priorities}"/>
+				<c:set var="cluster" scope = "session" value="${filter.clusters}"/>
+				<c:set var="tstatus" scope = "session" value="${filter.statuses}"/>
+				<c:set var="priority" scope = "session" value="${filter.priorities}"/>
 
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
 

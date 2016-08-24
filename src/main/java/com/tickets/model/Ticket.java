@@ -49,7 +49,7 @@ public class Ticket {
         initModelList();
     }
 
-    private void initModelList() {
+    public void initModelList() {
         clusterList = new ArrayList<String>();
         clusterList.add("Billing");
         clusterList.add("Reporting");

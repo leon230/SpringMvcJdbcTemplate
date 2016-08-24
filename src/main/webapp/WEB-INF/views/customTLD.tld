@@ -9,7 +9,7 @@
 
     <function>
         <name>contains</name>
-        <function-class>com.tickets.TLD.TextTLD</function-class>
+        <function-class>com.tickets.TLD.CustomTld</function-class>
         <function-signature>
             boolean contains(java.util.List,java.lang.Object)
         </function-signature>
