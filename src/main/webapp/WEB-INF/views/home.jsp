@@ -3,7 +3,8 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="cg" uri="customTLD.tld" %>
 
 <sec:authorize access="hasRole('ROLE_USER')">
 
@@ -21,6 +22,7 @@
 <jsp:include page="header.jsp" />
 </div>
     <body>
+
     <a href="./filter"> Filter data </a>
     	<br>
     	<div class="wrapper">
@@ -43,9 +45,13 @@
 	        	<th>No</th>
 	        	</thead>
 	        	<tbody>
+				<c:set var="cluster" value="${filter.clusters}"/>
+				<c:set var="tstatus" value="${filter.statuses}"/>
+				<c:set var="priority" value="${filter.priorities}"/>
+
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
-                    <c:forEach var="cluster" items="${filter.clusters}">
-                        <c:if test = "${ticket.cluster == cluster}">
+
+					<c:if test="${cg:contains(cluster,ticket.cluster) && cg:contains(tstatus,ticket.tstatus) && cg:contains(priority,ticket.priority)}">
 
                             <tr>
                             <td>
@@ -72,8 +78,8 @@
 
 
                             </tr>
-                        </c:if>
-                    </c:forEach>
+
+					</c:if>
 				</c:forEach>
 			</tbody>
 			</table>

@@ -29,6 +29,8 @@ public class MemberController {
         priorities.addAll(Ticket.getPrioritiesList());
         statuses.addAll(Ticket.getStatusesList());
         model.addAttribute("clusters", clusters);
+        model.addAttribute("priorities", priorities);
+        model.addAttribute("statuses", statuses);
         return "filter/TicketFilter";
     }
 //
