@@ -21,6 +21,7 @@ import java.util.Map;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages="com.tickets")
+//@ComponentScan(basePackageClasses={com.tickets.controller.MemberController.class})
 @Import({ WebSecurityConfig.class })
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
