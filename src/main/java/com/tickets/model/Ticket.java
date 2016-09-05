@@ -34,6 +34,7 @@ public class Ticket {
 
     public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
                   String reportedBy, String priority, String tstatus, String accOwner) {
+        this();
         this.number = number;
         this.title = title;
         this.owner = owner;
@@ -45,8 +46,6 @@ public class Ticket {
         this.priority = priority;
         this.tstatus = tstatus;
         this.accOwner = accOwner;
-
-        initModelList();
     }
 
     public void initModelList() {

@@ -99,7 +99,7 @@
                                                                             ]);
                             // Set chart options
                             var optionsPrioritySolve = {
-                                legend: { position: 'top', maxLines: 3 },
+                                legend: { position: 'top', maxLines: 5 },
 								isStacked: 'percent',
 								Text: 'label',
                                 bar: { groupWidth: '75%' },

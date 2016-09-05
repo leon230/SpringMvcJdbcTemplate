@@ -100,14 +100,12 @@ public class HomeController {
     public ModelAndView CheckForm(@ModelAttribute ("TicketForm") @Validated Ticket ticket, BindingResult result
 			, ModelAndView model) {
         if (result.hasErrors()) {
-//			Ticket newTicket = new Ticket();
-//			newTicket = ticket;
-//			newTicket.setTstatus("In queue");
-//			model.addObject("TicketForm", newTicket);
+        	ticket.initModelList();
+			model.setViewName("TicketForm");
 			model.addObject("clusters", Ticket.getClustersList());
 			model.addObject("statuses", Ticket.getStatusesList());
 			model.addObject("priorities", Ticket.getPrioritiesList());
-			return new ModelAndView("TicketForm");
+			return model;
         }
         else {
 				ticketDAO.saveOrUpdate(ticket);
