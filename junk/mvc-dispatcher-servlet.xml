@@ -10,13 +10,13 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-    <context:component-scan base-package="com.tickets.controller.HomeController" />
+    <context:component-scan base-package="com.tickets.controller.TicketController" />
 
     <mvc:annotation-driven />
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 
-    <bean class="com.tickets.controller.HomeController">
+    <bean class="com.tickets.controller.TicketController">
         <property name="formView" value="TicketForm" />
         <property name="successView" value="/" />
 
