@@ -2,6 +2,8 @@ package com.tickets.controller;
 
 import com.tickets.model.Filter;
 import com.tickets.model.Ticket;
+import com.tickets.utils.SaveToFile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class SecurityController {
+//    @Autowired
+//    SaveToFile saveToFile;
     /**
      * Security mapping
      */
@@ -37,6 +41,10 @@ public class SecurityController {
         filter.setClusters(t.getClustersList());
         filter.setPriorities(t.getPrioritiesList());
         filter.setStatuses(t.getStatusesList());
+        //SaveToFile saveToFile = new SaveToFile();
+
+//        saveToFile.saveFile();
+
         model.setViewName("login");
 
         return model;

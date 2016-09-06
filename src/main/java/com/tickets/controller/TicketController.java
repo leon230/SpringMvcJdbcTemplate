@@ -9,6 +9,7 @@ import com.tickets.dao.TicketDAO;
 import com.tickets.model.ChartKeyValue;
 import com.tickets.model.Filter;
 import com.tickets.model.Ticket;
+import com.tickets.utils.SaveToFile;
 import com.tickets.validator.NewTicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -60,6 +61,9 @@ public class TicketController {
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
+
+		SaveToFile sv = new SaveToFile();
+		sv.saveFile();
 //		DataFilter df = new DataFilter(true);
 //		model.addObject("isclosed", df.getIsClosed());
 		Filter filter = new Filter();
