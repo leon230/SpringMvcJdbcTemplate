@@ -18,12 +18,14 @@
 
     <c:url value="home/editTicket?id=" var="editTicket" />
     <c:url value="home/deleteTicket?id=" var="deleteTicket" />
+    <c:url value="home/export" var="ExportData" />
 <div class = "headerbar">
 <jsp:include page="header.jsp" />
 </div>
     <body>
 
     <a href="./filter"> Filter data </a>
+    <a href="${ExportData}"> Export data </a>
     	<br>
     	<div class="wrapper">
 	        <h1>${title}</h1>

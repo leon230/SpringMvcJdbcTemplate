@@ -1,9 +1,15 @@
 package com.tickets.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.tickets.dao.ChartsDAO;
 import com.tickets.dao.TicketDAO;
 import com.tickets.model.ChartKeyValue;
@@ -61,9 +67,6 @@ public class TicketController {
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
-
-		SaveToFile sv = new SaveToFile(listTicket);
-		sv.saveFile();
 //		DataFilter df = new DataFilter(true);
 //		model.addObject("isclosed", df.getIsClosed());
 		Filter filter = new Filter();
@@ -181,10 +184,58 @@ public class TicketController {
 			, ModelAndView model) {
 		model.addObject("filter", filter);
 		return new ModelAndView("redirect:/");
-
-		//return "redirect:/";
 	}
+/*
+	Export to file
+ */
+	@RequestMapping(value = "/home/export", method = RequestMethod.GET)
+	public String getFile(HttpServletRequest request,
+						  HttpServletResponse response) throws IOException{
+		int BUFFER_SIZE = 4096;
+		ServletContext context = request.getServletContext();
+		String appPath = context.getRealPath("");
+		String filePath = "/Export.csv";
+		String fullPath = appPath + filePath;
+		List<Ticket> listTicket = ticketDAO.list();
+		SaveToFile sv = new SaveToFile(listTicket,fullPath);
+		sv.saveFile();
 
+		File downloadFile = new File(fullPath);
+		FileInputStream inputStream = new FileInputStream(downloadFile);
+
+		// get MIME type of the file
+		String mimeType = context.getMimeType(fullPath);
+		if (mimeType == null) {
+			// set to binary type if MIME mapping not found
+			mimeType = "application/octet-stream";
+		}
+
+		// set content attributes for the response
+		response.setContentType(mimeType);
+		response.setContentLength((int) downloadFile.length());
+
+		// set headers for the response
+		String headerKey = "Content-Disposition";
+		String headerValue = String.format("attachment; filename=\"%s\"",
+				downloadFile.getName());
+		response.setHeader(headerKey, headerValue);
+
+		// get output stream of the response
+		OutputStream outStream = response.getOutputStream();
+
+		byte[] buffer = new byte[BUFFER_SIZE];
+		int bytesRead = -1;
+
+		// write bytes read from the input stream into the output stream
+		while ((bytesRead = inputStream.read(buffer)) != -1) {
+			outStream.write(buffer, 0, bytesRead);
+		}
+
+		inputStream.close();
+		outStream.close();
+
+		return "redirect:/home";
+	}
 
 /**
  * TO DO
