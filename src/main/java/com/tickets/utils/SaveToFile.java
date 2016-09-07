@@ -1,39 +1,44 @@
 package com.tickets.utils;
 
+import com.tickets.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lukasz.Homik on 2016-09-06.
  */
 public class SaveToFile {
-    private String fileFrom = "test.txt";
+    private String fileFrom = "./test.csv";
+    private List<Ticket> listToSave;
+
+    public SaveToFile(List<Ticket> listToSave) {
+        this.listToSave = listToSave;
+    }
+
 
     @Autowired
     public void saveFile()
     {
         String str;
-        BufferedReader br =
-                new BufferedReader(new StringReader("Some string stop"));
-
-//        System.out.println("Enter text ('stop' to quit).");
-        try (FileWriter fw = new FileWriter(fileFrom))
+        try
         {
-            do {
-//                System.out.print(": ");
-                str = br.readLine();
-                if(str.compareTo("stop") == 0) break;
-                str = str + "\r\n"; // add newline
+            FileWriter fw = new FileWriter("teste.csv");
+            for (Ticket ticket: listToSave
+                    ) {
+                str = ticket.getNumber() + "," + ticket.getTitle() + "," + ticket.getOwner();
+                str = str +  "\n";
                 fw.write(str);
-            } while(str.compareTo("stop") != 0);
+            }
+
+            fw.close();
+
         } catch(IOException exc) {
-//            System.out.println("I/O Error: " + exc);
+            System.out.println("I/O Error: " + exc);
         }
+
     }
 
 }
-
-
-
-

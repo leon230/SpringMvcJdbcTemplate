@@ -62,7 +62,7 @@ public class TicketController {
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		List<Ticket> listTicket = ticketDAO.list();
 
-		SaveToFile sv = new SaveToFile();
+		SaveToFile sv = new SaveToFile(listTicket);
 		sv.saveFile();
 //		DataFilter df = new DataFilter(true);
 //		model.addObject("isclosed", df.getIsClosed());
