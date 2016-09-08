@@ -18,5 +18,5 @@ public interface TicketDAO {
 	
 	public Ticket get(int ticketId);
 	
-	public List<Ticket> list();
+	public List<Ticket> list(String condition);
 }

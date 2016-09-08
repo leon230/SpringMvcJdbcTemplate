@@ -52,8 +52,11 @@ public class TicketDAOImpl implements TicketDAO {
 	}
 
 	@Override
-	public List<Ticket> list() {
-		String sql = "SELECT * FROM tickets ORDER BY ID DESC";
+	public List<Ticket> list(String condition) {
+		if (condition == null){
+			condition = "1=1";
+		}
+		String sql = "SELECT * FROM tickets WHERE " + condition + " ORDER BY ID DESC";
 		List<Ticket> listTicket = jdbcTemplate.query(sql, new RowMapper<Ticket>() {
 
 			@Override

@@ -66,10 +66,12 @@ public class TicketController {
 
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
-		List<Ticket> listTicket = ticketDAO.list();
+		List<Ticket> listTicket = ticketDAO.list(null);
 //		DataFilter df = new DataFilter(true);
 //		model.addObject("isclosed", df.getIsClosed());
 		Filter filter = new Filter();
+		filter.setCondition();
+		model.addObject("condition",filter.getCondition());
         //filter.setCourses(Ticket.getClustersList());
 		model.addObject("filter",filter);
 		model.addObject("listTicket", listTicket);
@@ -197,7 +199,7 @@ public class TicketController {
 		String appPath = context.getRealPath("");
 		String filePath = "/Export.csv";
 		String fullPath = appPath + filePath;
-		List<Ticket> listTicket = ticketDAO.list();
+		List<Ticket> listTicket = ticketDAO.list(null);
 
 		SaveToFile sv = new SaveToFile(listTicket,fullPath);
 		sv.saveFile();

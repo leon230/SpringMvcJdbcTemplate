@@ -27,6 +27,8 @@
     <a href="./filter"> Filter data </a>
     <a>|</a>
     <a href="${ExportData}"> Export data </a>
+    <a>|</a>
+        <a> "${condition}" </a>
     	<br>
     	<div class="wrapper">
 	        <h1>${title}</h1>

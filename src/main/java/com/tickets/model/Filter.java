@@ -15,6 +15,8 @@ public class Filter {
     private static List<String> clusters;
     private static List<String> statuses;
     private static List<String> priorities;
+    private static String condition;
+
 
 
     public List<String> getClusters() {
@@ -36,5 +38,25 @@ public class Filter {
     }
     public void setStatuses(List<String> statuses) {
         this.statuses = statuses;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition() {
+
+        condition = "CLUSTER IN (";
+
+        for (String str: clusters
+             ) {
+            condition = condition + "'" + str + "',";
+
+        }
+        condition = condition .substring(0,condition.length()-1)+ ")";
+
+
+
+
     }
 }
