@@ -25,6 +25,7 @@
     <body>
 
     <a href="./filter"> Filter data </a>
+    <a>|</a>
     <a href="${ExportData}"> Export data </a>
     	<br>
     	<div class="wrapper">

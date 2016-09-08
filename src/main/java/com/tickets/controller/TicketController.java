@@ -192,11 +192,13 @@ public class TicketController {
 	public String getFile(HttpServletRequest request,
 						  HttpServletResponse response) throws IOException{
 		int BUFFER_SIZE = 4096;
-		ServletContext context = request.getServletContext();
+//		ServletContext context = request.getServletContext();
+		ServletContext context = request.getSession().getServletContext();
 		String appPath = context.getRealPath("");
 		String filePath = "/Export.csv";
 		String fullPath = appPath + filePath;
 		List<Ticket> listTicket = ticketDAO.list();
+
 		SaveToFile sv = new SaveToFile(listTicket,fullPath);
 		sv.saveFile();
 

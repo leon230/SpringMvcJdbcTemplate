@@ -28,7 +28,10 @@ public class SaveToFile {
             FileWriter fw = new FileWriter(fileTo);
             for (Ticket ticket: listToSave
                     ) {
-                str = ticket.getNumber() + "," + ticket.getTitle() + "," + ticket.getOwner();
+                str = ticket.getId() + "," + ticket.getOwner() + "," + ticket.getTitle() + "," + ticket.getCluster()
+                        + "," + ticket.getPriority() + "," + "" + "," + ""
+                        + "," + ticket.getTstatus() + "," + ticket.getOpenDate() + "," + "0" + "," + ticket.getCloseDate()
+                        + "," + "24" + "," + ticket.getDescription().replace("\n"," ") + "," + "";
                 str = str +  "\n";
                 fw.write(str);
             }
