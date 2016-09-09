@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Component
@@ -40,22 +41,41 @@ public class Filter {
         this.statuses = statuses;
     }
 
-    public String getCondition() {
+    public static String getCondition() {
         return condition;
     }
 
     public void setCondition() {
 
-        condition = "CLUSTER IN (";
+        if (clusters == null || clusters.isEmpty()) {
+            condition = "1=1";
+        }
+        else {
+            condition = "CLUSTER IN (";
+            for (String str: clusters
+                    ) {
+                condition = condition + "'" + str + "',";
+            }
+            condition = condition .substring(0,condition.length()-1)+ ")";
+        }
 
-        for (String str: clusters
-             ) {
+
+
+        condition = condition + " AND STATUS IN (";
+        for (String str: statuses
+                ) {
             condition = condition + "'" + str + "',";
 
         }
         condition = condition .substring(0,condition.length()-1)+ ")";
 
+        condition = condition + " AND PRIORITY IN (";
+        for (String str: priorities
+                ) {
+            condition = condition + "'" + str + "',";
 
+        }
+        condition = condition .substring(0,condition.length()-1)+ ")";
 
 
     }

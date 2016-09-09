@@ -22,17 +22,20 @@
        	<h2>Ticket filter</h2>
 <div class="container">
        	<form:form action="ApplyFilter" method="post" modelAttribute="filter">
+       	<form:errors path="*" class="errorblock" element="div"/>
 		<div class="form-group">
 				<label class="col-sm-2 control-label">Cluster:</label>
 				<div class="col-sm-10">
 					<p><form:checkboxes path="clusters" items="${clusters}" /></p>
 				</div>
+
 		</div>
 
 		<div class="form-group">
         				<label class="col-sm-2 control-label">Priorities:</label>
         				<div class="col-sm-10">
         					<p><form:checkboxes path="priorities" items="${priorities}" /></p>
+
         				</div>
         		</div>
 

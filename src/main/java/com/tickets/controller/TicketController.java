@@ -17,8 +17,11 @@ import com.tickets.model.Filter;
 import com.tickets.model.Ticket;
 import com.tickets.utils.SaveToFile;
 import com.tickets.validator.NewTicketValidator;
+import com.tickets.validator.TicketFilterValidator;
+import org.junit.validator.ValidateWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,6 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
+@Import(com.tickets.validator.TicketFilterValidator.class)
 public class TicketController {
 
 	//private final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -46,6 +50,9 @@ public class TicketController {
 //	private UserDAO userDAO;
 	@Autowired
 	NewTicketValidator ticketFormValidator;
+	@Autowired
+	TicketFilterValidator ticketFilterValidator;
+
 
 //	@InitBinder
 //	protected void initBinder(WebDataBinder binder) {
@@ -66,13 +73,9 @@ public class TicketController {
 
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
-		List<Ticket> listTicket = ticketDAO.list(null);
-//		DataFilter df = new DataFilter(true);
-//		model.addObject("isclosed", df.getIsClosed());
 		Filter filter = new Filter();
-		filter.setCondition();
-		model.addObject("condition",filter.getCondition());
-        //filter.setCourses(Ticket.getClustersList());
+		List<Ticket> listTicket = ticketDAO.list(filter.getCondition());
+//		model.addObject("condition",filter.getCondition());
 		model.addObject("filter",filter);
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");
@@ -165,27 +168,66 @@ public class TicketController {
 	}
 
 
+//	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
+//	public String initForm(Model model) {
+//		Filter filter = new Filter();
+//		model.addAttribute("filter", filter);
+//		List<String> clusters = new ArrayList<String>();
+//		List<String> priorities = new ArrayList<String>();
+//		List<String> statuses = new ArrayList<String>();
+//		clusters.addAll(Ticket.getClustersList());
+//		priorities.addAll(Ticket.getPrioritiesList());
+//		statuses.addAll(Ticket.getStatusesList());
+//		model.addAttribute("clusters", clusters);
+//		model.addAttribute("priorities", priorities);
+//		model.addAttribute("statuses", statuses);
+//		return "filter/TicketFilter";
+//	}
+
 	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
-	public String initForm(Model model) {
+	public ModelAndView newFilter(ModelAndView model) {
 		Filter filter = new Filter();
-		model.addAttribute("filter", filter);
 		List<String> clusters = new ArrayList<String>();
 		List<String> priorities = new ArrayList<String>();
 		List<String> statuses = new ArrayList<String>();
 		clusters.addAll(Ticket.getClustersList());
 		priorities.addAll(Ticket.getPrioritiesList());
 		statuses.addAll(Ticket.getStatusesList());
-		model.addAttribute("clusters", clusters);
-		model.addAttribute("priorities", priorities);
-		model.addAttribute("statuses", statuses);
-		return "filter/TicketFilter";
+		model.addObject("filter", filter);
+		model.setViewName("filter/TicketFilter");
+		model.addObject("clusters", clusters);
+		model.addObject("priorities", priorities);
+		model.addObject("statuses", statuses);
+		return model;
 	}
 
 	@RequestMapping(value = "/ApplyFilter", method = RequestMethod.POST)
 	public ModelAndView CheckForm(@ModelAttribute("filter") Filter filter, BindingResult result
 			, ModelAndView model) {
-		model.addObject("filter", filter);
-		return new ModelAndView("redirect:/");
+		TicketFilterValidator filterValidator = new TicketFilterValidator();
+		filterValidator.validate(filter, result);
+
+		if (result.hasErrors()){
+			List<String> clusters = new ArrayList<String>();
+			List<String> priorities = new ArrayList<String>();
+			List<String> statuses = new ArrayList<String>();
+			clusters.addAll(Ticket.getClustersList());
+			priorities.addAll(Ticket.getPrioritiesList());
+			statuses.addAll(Ticket.getStatusesList());
+
+			model.setViewName("filter/TicketFilter");
+			model.addObject("filter", filter);
+			model.addObject("clusters", clusters);
+			model.addObject("priorities", priorities);
+			model.addObject("statuses", statuses);
+			filter.setCondition();
+			return model;
+		}
+		else {
+			filter.setCondition();
+			model.addObject("filter", filter);
+			return new ModelAndView("redirect:/");
+		}
 	}
 /*
 	Export to file
@@ -199,7 +241,7 @@ public class TicketController {
 		String appPath = context.getRealPath("");
 		String filePath = "/Export.csv";
 		String fullPath = appPath + filePath;
-		List<Ticket> listTicket = ticketDAO.list(null);
+		List<Ticket> listTicket = ticketDAO.list(Filter.getCondition());
 
 		SaveToFile sv = new SaveToFile(listTicket,fullPath);
 		sv.saveFile();

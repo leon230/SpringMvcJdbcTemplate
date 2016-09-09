@@ -27,8 +27,6 @@
     <a href="./filter"> Filter data </a>
     <a>|</a>
     <a href="${ExportData}"> Export data </a>
-    <a>|</a>
-        <a> "${condition}" </a>
     	<br>
     	<div class="wrapper">
 	        <h1>${title}</h1>
@@ -56,9 +54,7 @@
 
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
 
-					<c:if test="${cg:contains(cluster,ticket.cluster) && cg:contains(tstatus,ticket.tstatus) && cg:contains(priority,ticket.priority)}">
-
-                            <tr>
+                   <tr>
                             <td>
                                 <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -83,8 +79,6 @@
 
 
                             </tr>
-
-					</c:if>
 				</c:forEach>
 			</tbody>
 			</table>
