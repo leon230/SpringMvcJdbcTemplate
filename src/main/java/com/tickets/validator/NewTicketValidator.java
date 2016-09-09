@@ -46,6 +46,13 @@ public class NewTicketValidator implements Validator {
             errors.rejectValue("priority", "NotEmpty.TicketForm.priority");
         }
 
+        if(ticket.getRequestDate()==null){
+            errors.rejectValue("requestDate", "NotEmpty.TicketForm.requestDate");
+        }
+        if(ticket.getDueDate()==null){
+            errors.rejectValue("dueDate", "NotEmpty.TicketForm.dueDate");
+        }
+
 
     }
 

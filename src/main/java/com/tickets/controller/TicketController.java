@@ -83,15 +83,6 @@ public class TicketController {
 
 		return model;
 	}
-
-//	@RequestMapping(value="/home/users")
-//    public ModelAndView listuser(ModelAndView model) throws IOException{
-//        List<User> listuser = userDAO.listuser("luki");
-//        model.addObject("listuser", listuser);
-//        model.setViewName("userLogin");
-//
-//        return model;
-//    }
 	
 	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
@@ -166,23 +157,6 @@ public class TicketController {
 
 		return model;
 	}
-
-
-//	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
-//	public String initForm(Model model) {
-//		Filter filter = new Filter();
-//		model.addAttribute("filter", filter);
-//		List<String> clusters = new ArrayList<String>();
-//		List<String> priorities = new ArrayList<String>();
-//		List<String> statuses = new ArrayList<String>();
-//		clusters.addAll(Ticket.getClustersList());
-//		priorities.addAll(Ticket.getPrioritiesList());
-//		statuses.addAll(Ticket.getStatusesList());
-//		model.addAttribute("clusters", clusters);
-//		model.addAttribute("priorities", priorities);
-//		model.addAttribute("statuses", statuses);
-//		return "filter/TicketFilter";
-//	}
 
 	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
 	public ModelAndView newFilter(ModelAndView model) {

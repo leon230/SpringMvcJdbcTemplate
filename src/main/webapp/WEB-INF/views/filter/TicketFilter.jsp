@@ -25,24 +25,32 @@
        	<form:errors path="*" class="errorblock" element="div"/>
 		<div class="form-group">
 				<label class="col-sm-2 control-label">Cluster:</label>
-				<div class="col-sm-10">
-					<p><form:checkboxes path="clusters" items="${clusters}" /></p>
+				<div class="filterDiv">
+					<c:forEach var="cluster" items="${clusters}">
+						<p><form:checkbox path="clusters" value = "${cluster}" />${cluster}</p>
+					</c:forEach>
+
+
 				</div>
 
 		</div>
 
 		<div class="form-group">
         				<label class="col-sm-2 control-label">Priorities:</label>
-        				<div class="col-sm-10">
-        					<p><form:checkboxes path="priorities" items="${priorities}" /></p>
+        				<div class="filterDiv">
+        					<c:forEach var="priority" items="${priorities}">
+								<p><form:checkbox path="priorities" value = "${priority}" />${priority}</p>
+							</c:forEach>
 
         				</div>
         		</div>
 
         		<div class="form-group">
                 				<label class="col-sm-2 control-label">Statuses:</label>
-                				<div class="col-sm-10">
-                					<p><form:checkboxes path="statuses" items="${statuses}" /></p>
+                				<div class="filterDiv">
+                					<c:forEach var="pstatus" items="${statuses}">
+										<p><form:checkbox path="statuses" value = "${pstatus}" />${pstatus}</p>
+									</c:forEach>
                 				</div>
                 		</div>
 		<div class="form-group">

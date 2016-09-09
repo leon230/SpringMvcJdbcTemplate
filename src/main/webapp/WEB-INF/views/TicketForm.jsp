@@ -72,6 +72,16 @@
 			</div>
 			</spring:bind>
 
+            <spring:bind path="requestDate">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Request date</label>
+                <div class="col-sm-10">
+                    <form:input path="requestDate" type="text" class="form-control " id="requestDate" placeholder="Request date" />
+                    <form:errors path="requestDate" class="control-label" />
+                </div>
+            </div>
+            </spring:bind>
+
 			<spring:bind path="openDate">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Open date</label>
@@ -81,9 +91,20 @@
 				</div>
 			</div>
 			</spring:bind>
+
+			<spring:bind path="dueDate">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Due date</label>
+                <div class="col-sm-10">
+                    <form:input path="dueDate" type="text" class="form-control " id="dueDate" placeholder="Due date" />
+                    <form:errors path="dueDate" class="control-label" />
+                </div>
+            </div>
+            </spring:bind>
+
 			<spring:bind path="closeDate">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Open date</label>
+                <label class="col-sm-2 control-label">Close date</label>
                 <div class="col-sm-10">
                     <form:input path="closeDate" type="text" class="form-control " id="closeDate" placeholder="Close date" />
                     <form:errors path="closeDate" class="control-label" />

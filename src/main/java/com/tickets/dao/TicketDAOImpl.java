@@ -28,20 +28,20 @@ public class TicketDAOImpl implements TicketDAO {
 			// update
 			String sql = "UPDATE tickets SET TICKET_NO=?, TICKET_TITLE=?, TICKET_OWNER=?, "
 						+ "CLUSTER=?, OPEN_DATE=?, CLOSE_DATE=?, DESCRIPTION=?" +
-					",REPORTED_BY=?, PRIORITY=?, STATUS=?, ACC_OWNER=? WHERE ID=?";
+					",REPORTED_BY=?, PRIORITY=?, STATUS=?, ACC_OWNER=?, REQUEST_DATE=?,DUE_DATE =? WHERE ID=?";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
 					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
 					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getTstatus(),
-					ticket.getAccOwner(), ticket.getId());
+					ticket.getAccOwner(), ticket.getRequestDate(), ticket.getDueDate(), ticket.getId());
 		} else {
 			// insert
 			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER, OPEN_DATE," +
-					"CLOSE_DATE,DESCRIPTION,REPORTED_BY,PRIORITY,STATUS,ACC_OWNER)"
-						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					"CLOSE_DATE,DESCRIPTION,REPORTED_BY,PRIORITY,STATUS,ACC_OWNER,REQUEST_DATE,DUE_DATE)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sql, ticket.getNumber(), ticket.getTitle(),
 					ticket.getOwner(), ticket.getCluster(), ticket.getOpenDate(),ticket.getCloseDate(),
 					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getTstatus(),
-					ticket.getAccOwner());
+					ticket.getAccOwner(),ticket.getRequestDate(), ticket.getDueDate() );
 		}
 	}
 
@@ -68,14 +68,15 @@ public class TicketDAOImpl implements TicketDAO {
 				aTicket.setTitle(rs.getString("TICKET_TITLE"));
 				aTicket.setCluster(rs.getString("CLUSTER"));
 				aTicket.setOwner(rs.getString("TICKET_OWNER"));
+				aTicket.setRequestDate(rs.getDate("REQUEST_DATE"));
 				aTicket.setOpenDate(rs.getDate("OPEN_DATE"));
+				aTicket.setDueDate(rs.getDate("DUE_DATE"));
 				aTicket.setCloseDate(rs.getDate("CLOSE_DATE"));
 				aTicket.setDescription(rs.getString("DESCRIPTION"));
 				aTicket.setReportedBy(rs.getString("REPORTED_BY"));
 				aTicket.setPriority(rs.getString("PRIORITY"));
 				aTicket.setTstatus(rs.getString("STATUS"));
 				aTicket.setAccOwner(rs.getString("ACC_OWNER"));
-
 				return aTicket;
 			}
 			
@@ -99,7 +100,9 @@ public class TicketDAOImpl implements TicketDAO {
 					ticket.setTitle(rs.getString("TICKET_TITLE"));
 					ticket.setOwner(rs.getString("TICKET_OWNER"));
 					ticket.setCluster(rs.getString("CLUSTER"));
+					ticket.setRequestDate(rs.getDate("REQUEST_DATE"));
 					ticket.setOpenDate(rs.getDate("OPEN_DATE"));
+					ticket.setDueDate(rs.getDate("DUE_DATE"));
 					ticket.setCloseDate(rs.getDate("CLOSE_DATE"));
 					ticket.setDescription(rs.getString("DESCRIPTION"));
 					ticket.setReportedBy(rs.getString("REPORTED_BY"));

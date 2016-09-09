@@ -14,4 +14,12 @@
             boolean contains(java.util.List,java.lang.Object)
         </function-signature>
     </function>
+
+    <function>
+        <name>changeClass</name>
+        <function-class>com.tickets.TLD.CustomTld</function-class>
+        <function-signature>
+            String changeClass(java.lang.String, java.util.Date,java.util.Date)
+        </function-signature>
+    </function>
 </taglib>

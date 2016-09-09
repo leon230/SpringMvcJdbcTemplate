@@ -38,7 +38,9 @@
 	        	<th>Title</th>
 	        	<th>Owner</th>
 	        	<th>Cluster</th>
+	        	<th>Request Date</th>
 	        	<th>Open Date</th>
+	        	<th>Due Date</th>
 	        	<th>Close Date</th>
 	        	<th min-width: "300px">Description</th>
 	        	<th>Reported by</th>
@@ -54,7 +56,8 @@
 
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
 
-                   <tr>
+                   <tr class = "${cg:changeClass(ticket.priority,null,null)}">
+
                             <td>
                                 <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,7 +71,9 @@
                                 <td class = "longCol">${ticket.title}</td>
                                 <td>${ticket.owner}</td>
                                 <td>${ticket.cluster}</td>
+                                <td>${ticket.requestDate}</td>
                                 <td>${ticket.openDate}</td>
+                                <td>${ticket.dueDate}</td>
                                 <td>${ticket.closeDate}</td>
                                 <td class = "longCol"><div class = "longText">${ticket.description}</div></td>
                                 <td>${ticket.reportedBy}</td>

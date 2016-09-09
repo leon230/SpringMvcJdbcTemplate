@@ -47,19 +47,12 @@ public class Filter {
 
     public void setCondition() {
 
-        if (clusters == null || clusters.isEmpty()) {
-            condition = "1=1";
+        condition = "CLUSTER IN (";
+        for (String str: clusters
+                ) {
+            condition = condition + "'" + str + "',";
         }
-        else {
-            condition = "CLUSTER IN (";
-            for (String str: clusters
-                    ) {
-                condition = condition + "'" + str + "',";
-            }
-            condition = condition .substring(0,condition.length()-1)+ ")";
-        }
-
-
+        condition = condition .substring(0,condition.length()-1)+ ")";
 
         condition = condition + " AND STATUS IN (";
         for (String str: statuses

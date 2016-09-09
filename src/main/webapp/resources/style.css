@@ -18,10 +18,22 @@ body {
 	display: block;
 	overflow-x: auto;
 	width: auto;
-	max-height: auto;
+	max-height: 700px;
 
 }
-.mainTable tr:nth-child(even) {background-color: #f2f2f2;}
+.mainTable .ood{
+	background-color: #ff0000;
+}
+.mainTable .phigh{
+	background-color: #ff9999;
+}
+.mainTable .new{
+	background-color: #85e085;
+}
+.mainTable .thstd{
+	background-color: #ffffff;
+}
+/* .mainTable tr:nth-child(even) {background-color: #f2f2f2;} */
 .mainTable tr:hover {background-color: #b3d9ff}
 .mainTable th {
     background-color: #ffffff;
@@ -79,6 +91,14 @@ div.wrapper {
 h1{
 	color: #000000;
 }
-body {
-    background-color: #ffffff;
+.filterDiv{
+	border: 1px solid rgba(242, 242, 242, .9);
+	height: 20px;
+	min-width: 300px;
+	display: inline-table;
+
+}
+.filterDiv p{
+	display: block;
+
 }

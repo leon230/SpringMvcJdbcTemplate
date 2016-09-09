@@ -20,6 +20,8 @@ public class Ticket {
     private String cluster;
     private Date openDate;
     private Date closeDate;
+    private Date requestDate;
+    private Date dueDate;
     private String description;
     private String reportedBy;
     private String priority;
@@ -33,7 +35,7 @@ public class Ticket {
     }
 
     public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
-                  String reportedBy, String priority, String tstatus, String accOwner) {
+                  String reportedBy, String priority, String tstatus, String accOwner, Date requestDate, Date dueDate) {
         this();
         this.number = number;
         this.title = title;
@@ -46,27 +48,38 @@ public class Ticket {
         this.priority = priority;
         this.tstatus = tstatus;
         this.accOwner = accOwner;
+        this.requestDate = requestDate;
+        this.dueDate = dueDate;
     }
 
     public void initModelList() {
         clusterList = new ArrayList<String>();
-        clusterList.add("Billing");
+        clusterList.add("BCP");
+        clusterList.add("Data Quality");
+        clusterList.add("End User Support");
+        clusterList.add("Enchancements");
+        clusterList.add("Finance");
+        clusterList.add("Integration");
+        clusterList.add("Masterdata");
+        clusterList.add("Order Execution");
+        clusterList.add("Planning");
         clusterList.add("Reporting");
-        clusterList.add("OPS");
-        clusterList.add("UTMS");
-        clusterList.add("SAP");
-        clusterList.add("Other");
+        clusterList.add("Tickets");
+        clusterList.add("Training");
+        clusterList.add("Projects");
 
         statuses = new ArrayList<String>();
         statuses.add("In queue");
-        statuses.add("In progress");
-        statuses.add("Sent for testing");
+        statuses.add("Open");
+        statuses.add("In Progress");
+        statuses.add("Ongoing");
         statuses.add("Closed");
 
         priorities = new ArrayList<String>();
         priorities.add("High");
         priorities.add("Medium");
         priorities.add("Low");
+        priorities.add("Critical");
 
     }
 
@@ -158,5 +171,21 @@ public class Ticket {
 
     public void setAccOwner(String val) {
         this.accOwner = val;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }
