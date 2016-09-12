@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$('#msg').html("This is updated by jQuery")
+//	$('#msg').html("This is updated by jQuery")
 //    var table = document.getElementById('mainTable');
 //    var tbody = table.getElementsByTagName('tbody')[0];
 //    var cells = tbody.getElementsByTagName('td');
