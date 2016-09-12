@@ -18,8 +18,9 @@
 </head>
 <jsp:include page="../header.jsp" />
        <body>
-       	<h2>Ticket filter</h2>
 <a href="#" onclick="javascript:resetFilter();"> Reset filter </a>
+<hr>
+       	<h2>Ticket filter</h2>
 <div class="container">
        	<form:form action="ApplyFilter" method="post" modelAttribute="filter">
        	<form:errors path="*" class="errorblock" element="div"/>

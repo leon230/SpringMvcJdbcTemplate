@@ -13,6 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
         <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="<c:url value="/resources/js/jsmain.js" />"></script>
         <title>Ticket Manager Home</title>
     </head>
 
@@ -27,9 +29,13 @@
     <a href="./filter"> Filter data </a>
     <a>|</a>
     <a href="${ExportData}"> Export data </a>
-    	<br>
+    <a>|</a>
+        <a href="#" onclick="javascript:showTicketActions();"> Toggle </a>
+	<hr>
+
     	<div class="wrapper">
 	        <h1>${title}</h1>
+<div id="msg"></div>
 	        <table class="mainTable" id ="mainTable">
 	        <thead>
 	            <th>Action</th>
@@ -60,10 +66,10 @@
                    <tr class = "${cg:changeClass(ticket.priority, ticket.tstatus, ticket.dueDate, currentDate, ticket.openDate)}">
 
                             <td>
-                                <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>
+                                <a href="${editTicket}${ticket.id}">Edit</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                  <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-                                    <button class="btn btn-danger" onclick="location.href='${deleteTicket}${ticket.id}'">Delete</button>
+                                    <a href ="${deleteTicket}${ticket.id}">Delete</a>
                                  </c:if>
 
                             </td>
@@ -83,8 +89,10 @@
                                 <td>${ticket.accOwner}</td>
                                 <td>${status.index + 1}</td>
 
-
-                            </tr>
+                    <tr id = "actionsDetails">
+					<td id = "actionsDetails"> aa	<td>
+                    </tr>
+                    </tr>
 				</c:forEach>
 			</tbody>
 			</table>
