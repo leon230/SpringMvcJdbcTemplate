@@ -15,7 +15,6 @@ public class Filter {
     private static String condition;
 
     public Filter(){
-
     }
 
     public List<String> getClusters() {

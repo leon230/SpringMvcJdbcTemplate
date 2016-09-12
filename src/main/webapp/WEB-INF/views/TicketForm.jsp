@@ -18,9 +18,6 @@
 
 <jsp:include page="header.jsp" />
 <body>
-
-
-<div id="msg"></div>
 	<div class="container">
 		<h1>New/Edit Ticket</h1>
 		<form:form action="saveTicket" method="post" modelAttribute="TicketForm">

@@ -19,7 +19,7 @@
         <name>changeClass</name>
         <function-class>com.tickets.TLD.CustomTld</function-class>
         <function-signature>
-            String changeClass(java.lang.String, java.lang.String, java.util.Date, java.util.Date)
+            String changeClass(java.lang.String, java.lang.String, java.util.Date, java.util.Date, java.util.Date)
         </function-signature>
     </function>
 </taglib>

@@ -16,10 +16,10 @@
 
     <title>New/Edit Ticket</title>
 </head>
-
 <jsp:include page="../header.jsp" />
        <body>
        	<h2>Ticket filter</h2>
+<a href="#" onclick="javascript:resetFilter();"> Reset filter </a>
 <div class="container">
        	<form:form action="ApplyFilter" method="post" modelAttribute="filter">
        	<form:errors path="*" class="errorblock" element="div"/>
@@ -29,10 +29,7 @@
 					<c:forEach var="cluster" items="${clusters}">
 						<p><form:checkbox path="clusters" value = "${cluster}" />${cluster}</p>
 					</c:forEach>
-
-
 				</div>
-
 		</div>
 
 		<div class="form-group">
@@ -41,7 +38,6 @@
         					<c:forEach var="priority" items="${priorities}">
 								<p><form:checkbox path="priorities" value = "${priority}" />${priority}</p>
 							</c:forEach>
-
         				</div>
         		</div>
 
