@@ -8,17 +8,15 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Component
-@Scope(value= WebApplicationContext.SCOPE_SESSION,
-        proxyMode= ScopedProxyMode.TARGET_CLASS)
 public class Filter {
-
     private static List<String> clusters;
     private static List<String> statuses;
     private static List<String> priorities;
     private static String condition;
 
+    public Filter(){
 
+    }
 
     public List<String> getClusters() {
         return clusters;

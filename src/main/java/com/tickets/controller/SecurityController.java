@@ -24,6 +24,9 @@ public class SecurityController {
     /**
      * Security mapping
      */
+    @Autowired
+    Filter ticketFilter;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
@@ -36,11 +39,11 @@ public class SecurityController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
-        Filter filter = new Filter();
+//        Filter filter = new Filter();
         Ticket t = new Ticket();
-        filter.setClusters(t.getClustersList());
-        filter.setPriorities(t.getPrioritiesList());
-        filter.setStatuses(t.getStatusesList());
+        ticketFilter.setClusters(t.getClustersList());
+        ticketFilter.setPriorities(t.getPrioritiesList());
+        ticketFilter.setStatuses(t.getStatusesList());
         //SaveToFile saveToFile = new SaveToFile();
 
 //        saveToFile.saveFile();

@@ -47,12 +47,12 @@ public class TicketController {
 	private TicketDAO ticketDAO;
 	@Autowired
 	private ChartsDAO chartsDAO;
-//	@Autowired
-//	private UserDAO userDAO;
 	@Autowired
 	NewTicketValidator ticketFormValidator;
 	@Autowired
 	TicketFilterValidator ticketFilterValidator;
+	@Autowired
+	Filter ticketFilter;
 
 
 //	@InitBinder
@@ -74,12 +74,12 @@ public class TicketController {
 
 	@RequestMapping(value="/home")
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
-		Filter filter = new Filter();
-		List<Ticket> listTicket = ticketDAO.list(filter.getCondition());
+//		Filter filter = new Filter();
+		List<Ticket> listTicket = ticketDAO.list(ticketFilter.getCondition());
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		model.addObject("currentDate",cal.getTime());
-		model.addObject("filter",filter);
+		model.addObject("filter",ticketFilter);
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");
 		model.setViewName("home");
@@ -163,14 +163,14 @@ public class TicketController {
 
 	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
 	public ModelAndView newFilter(ModelAndView model) {
-		Filter filter = new Filter();
+//		Filter filter = new Filter();
 		List<String> clusters = new ArrayList<String>();
 		List<String> priorities = new ArrayList<String>();
 		List<String> statuses = new ArrayList<String>();
 		clusters.addAll(Ticket.getClustersList());
 		priorities.addAll(Ticket.getPrioritiesList());
 		statuses.addAll(Ticket.getStatusesList());
-		model.addObject("filter", filter);
+		model.addObject("filter", ticketFilter);
 		model.setViewName("filter/TicketFilter");
 		model.addObject("clusters", clusters);
 		model.addObject("priorities", priorities);

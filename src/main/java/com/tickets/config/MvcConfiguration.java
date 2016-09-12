@@ -3,6 +3,7 @@ package com.tickets.config;
 import javax.sql.DataSource;
 
 import com.tickets.dao.*;
+import com.tickets.model.Filter;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -70,6 +71,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public ChartsDAO getchartsDAO() {return new ChartsDAOImpl(getDataSource());}
 
+	@Bean
+	@Scope(value= WebApplicationContext.SCOPE_SESSION,
+			proxyMode=ScopedProxyMode.TARGET_CLASS)
+	public Filter getFilterConf(){return new Filter();
+	}
 //	@Bean
 //	public DefaultServletHttpRequestHandler defaultServletHttpRequestHandler() {
 //		return new DefaultServletHttpRequestHandler();
