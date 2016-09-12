@@ -28,7 +28,7 @@ $('#msg').html("This is updated by jQuery madafuckeirer")
     if(cbs[i].type == 'checkbox')
     {
         cbs[i].checked = true;
-//        cbs[i].checked = bx.checked;
+//        cbs[i].checked = bx.checked;a
      }
  }
 }
