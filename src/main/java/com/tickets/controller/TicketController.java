@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.ServletContext;
@@ -75,7 +76,9 @@ public class TicketController {
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 		Filter filter = new Filter();
 		List<Ticket> listTicket = ticketDAO.list(filter.getCondition());
-//		model.addObject("condition",filter.getCondition());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		model.addObject("currentDate",cal.getTime());
 		model.addObject("filter",filter);
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");

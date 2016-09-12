@@ -53,10 +53,11 @@
 				<c:set var="cluster" scope = "session" value="${filter.clusters}"/>
 				<c:set var="tstatus" scope = "session" value="${filter.statuses}"/>
 				<c:set var="priority" scope = "session" value="${filter.priorities}"/>
+				<c:set var="currentDate" scope = "session" value="${currentDate}"/>
 
 				<c:forEach var="ticket" items="${listTicket}" varStatus="status">
 
-                   <tr class = "${cg:changeClass(ticket.priority,null,null)}">
+                   <tr class = "${cg:changeClass(ticket.priority, ticket.tstatus, ticket.dueDate, currentDate)}">
 
                             <td>
                                 <button class="btn btn-primary" onclick="location.href='${editTicket}${ticket.id}'">Edit</button>

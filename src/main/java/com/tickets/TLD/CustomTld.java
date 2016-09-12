@@ -15,18 +15,27 @@ public class CustomTld extends SimpleTagSupport {
         return list.contains(o);
     }
 
-    public static String changeClass(String inputStr, Date dateTo, Date dateFrom){
-        long diff = dateTo.getTime() - dateFrom.getTime();
+    public static String changeClass(String strPriority, String strStatus, Date dateTo, Date dateFrom){
+        if (dateFrom != null & dateTo != null & !strStatus.equals("Closed") ) {
+            long diff = dateTo.getTime() - dateFrom.getTime();
 
-        if (inputStr.equals("High")){
-                return "phigh";
-            }
-            else if(diff < 10){
+            if(diff <= 1000*60*60*24*2){
                 return "ood";
             }
-            else {
-                return "thstd";
+
+        }
+        if (strPriority.equals("High") & !strStatus.equals("Closed")){
+                return "phigh";
             }
+        else if (dateTo == null){
+            return "new";
+        }
+        else if(strStatus.equals("Closed")){
+            return "thstd";
+        }
+        else {
+            return "thstd";
+        }
 
     }
 }
