@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$('#msg').html("This is updated by jQuery")
+//	$('#msg').html("This is updated by jQuery")
 //    var table = document.getElementById('mainTable');
 //    var tbody = table.getElementsByTagName('tbody')[0];
 //    var cells = tbody.getElementsByTagName('td');
@@ -28,14 +28,18 @@ $('#msg').html("This is updated by jQuery madafuckeirer")
     if(cbs[i].type == 'checkbox')
     {
         cbs[i].checked = true;
-//        cbs[i].checked = bx.checked;a
+//        cbs[i].checked = bx.checked;
      }
  }
 }
-function showTicketActions(){
-    var ticketDet = document.getElementById('actionsDetails');
+function showTicketActions(id){
+    var ticketDet = document.getElementById(id);
 
-    $('#actionsDetails').toggle();
+    $(ticketDet).toggleClass("trActionsDetVis");
+	// for(var i=0; i < ticketDet.length; i++)
+	 // {
+		// $ticketDet[i].toggle();
+	 // }
 //$('#msg').html("This is updated by jQuery2")
 // $('#msg').toggle();
 }

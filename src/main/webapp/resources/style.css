@@ -17,6 +17,15 @@ hr {
     margin-right: auto;
 }
 /* Main  table CSS */
+.trActionsDet{
+	visibility: collapse;
+
+}
+.trActionsDetVis{
+	visibility: Visible;
+
+}
+
 .mainTable  th, td {
    border: 1px solid black;
    padding-left: 3px;

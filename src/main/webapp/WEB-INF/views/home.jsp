@@ -30,12 +30,11 @@
     <a>|</a>
     <a href="${ExportData}"> Export data </a>
     <a>|</a>
-        <a href="#" onclick="javascript:showTicketActions();"> Toggle </a>
+
 	<hr>
 
     	<div class="wrapper">
 	        <h1>${title}</h1>
-<div id="msg"></div>
 	        <table class="mainTable" id ="mainTable">
 	        <thead>
 	            <th>Action</th>
@@ -73,8 +72,8 @@
                                  </c:if>
 
                             </td>
-                                <td class = "shortCol">${ticket.id}</td>
-                                <td>${ticket.number}</td>
+                                <td class = "shortCol"><a href="#" onclick="javascript:showTicketActions('id-${status.index + 1}');"> + </a>${ticket.id}</td>
+                                <td >${ticket.number}</td>
                                 <td class = "longCol">${ticket.title}</td>
                                 <td>${ticket.owner}</td>
                                 <td>${ticket.cluster}</td>
@@ -89,10 +88,12 @@
                                 <td>${ticket.accOwner}</td>
                                 <td>${status.index + 1}</td>
 
-                    <tr id = "actionsDetails">
-					<td id = "actionsDetails"> aa	<td>
                     </tr>
+
+                    <tr class="trActionsDet" id = "id-${status.index + 1}">
+						<td> Ticket Action Details	<td>
                     </tr>
+
 				</c:forEach>
 			</tbody>
 			</table>
