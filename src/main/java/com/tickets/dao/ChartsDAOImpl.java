@@ -60,10 +60,10 @@ public class ChartsDAOImpl implements ChartsDAO {
 
     @Override
     public List<ChartKeyValue> getPrioritySolveData() {
-        String sql = "SELECT distinct concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) as c_date" +
-                ",(select count(id) from tickets where priority = 'High' AND concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) = concat(year(INSERT_DATE),month(INSERT_DATE))) as c_high" +
-                ",(select count(id) from tickets where priority = 'Medium' AND concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) = concat(year(INSERT_DATE),month(INSERT_DATE))) as c_med" +
-                ",(select count(id) from tickets where priority = 'Low' AND concat(year(t.INSERT_DATE),month(t.INSERT_DATE)) = concat(year(INSERT_DATE),month(INSERT_DATE))) as c_low " +
+        String sql = "SELECT distinct concat(year(t.OPEN_DATE),month(t.OPEN_DATE)) as c_date" +
+                ",(select count(id) from tickets where priority = 'High' AND concat(year(t.OPEN_DATE),month(t.OPEN_DATE)) = concat(year(OPEN_DATE),month(OPEN_DATE))) as c_high" +
+                ",(select count(id) from tickets where priority = 'Medium' AND concat(year(t.OPEN_DATE),month(t.OPEN_DATE)) = concat(year(OPEN_DATE),month(OPEN_DATE))) as c_med" +
+                ",(select count(id) from tickets where priority = 'Low' AND concat(year(t.OPEN_DATE),month(t.OPEN_DATE)) = concat(year(OPEN_DATE),month(OPEN_DATE))) as c_low " +
                 "from tickets t";
         List<ChartKeyValue> DataList = jdbcTemplate.query(sql, new RowMapper<ChartKeyValue>() {
 
