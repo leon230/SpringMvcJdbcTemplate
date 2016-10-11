@@ -72,7 +72,7 @@ public class TicketController {
 		return "redirect:/home";
 	}
 
-	@RequestMapping(value="/home")
+	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 //		Filter filter = new Filter();
 		List<Ticket> listTicket = ticketDAO.list(ticketFilter.getCondition());
