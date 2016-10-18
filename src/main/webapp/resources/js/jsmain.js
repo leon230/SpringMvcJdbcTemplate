@@ -21,7 +21,6 @@ jQuery(document).ready(function($) {
 function resetFilter()
 {
 
-$('#msg').html("This is updated by jQuery madafuckeirer")
  var cbs = document.getElementsByTagName('input');
  for(var i=0; i < cbs.length; i++)
  {
