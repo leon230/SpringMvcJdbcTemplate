@@ -10,7 +10,6 @@ import java.util.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.tickets.dao.ChartsDAO;
 import com.tickets.dao.TicketDAO;
 import com.tickets.model.ChartKeyValue;
@@ -19,25 +18,16 @@ import com.tickets.model.Ticket;
 import com.tickets.utils.SaveToFile;
 import com.tickets.validator.NewTicketValidator;
 import com.tickets.validator.TicketFilterValidator;
-import org.junit.validator.ValidateWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- *
- */
 @Controller
 @Import(com.tickets.validator.TicketFilterValidator.class)
 public class TicketController {
@@ -74,7 +64,7 @@ public class TicketController {
 
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
-//		Filter filter = new Filter();
+
 		List<Ticket> listTicket = ticketDAO.list(ticketFilter.getCondition());
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();

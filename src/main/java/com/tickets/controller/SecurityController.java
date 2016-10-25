@@ -2,7 +2,6 @@ package com.tickets.controller;
 
 import com.tickets.model.Filter;
 import com.tickets.model.Ticket;
-import com.tickets.utils.SaveToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,14 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class SecurityController {
-//    @Autowired
-//    SaveToFile saveToFile;
-    /**
-     * Security mapping
-     */
+
     @Autowired
     Filter ticketFilter;
-
+/**
+ * Security mapping
+ */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
@@ -39,14 +36,10 @@ public class SecurityController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
-//        Filter filter = new Filter();
         Ticket t = new Ticket();
         ticketFilter.setClusters(t.getClustersList());
         ticketFilter.setPriorities(t.getPrioritiesList());
         ticketFilter.setStatuses(t.getStatusesList());
-        //SaveToFile saveToFile = new SaveToFile();
-
-//        saveToFile.saveFile();
 
         model.setViewName("login");
 
@@ -64,7 +57,6 @@ public class SecurityController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            System.out.println(userDetail);
 
             model.addObject("username", userDetail.getUsername());
 
