@@ -15,7 +15,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 /**
  * Created by lukasz.homik on 2016-10-11.
  */
-//22
 public class TicketControllerTest {
 
     @Autowired WebApplicationContext wac;
