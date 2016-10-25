@@ -12,7 +12,7 @@ public class JavaTest {
         ticket.setAccOwner("AccOwner");
         Assert.assertNotNull(ticket.getAccOwner());
         Assert.assertEquals("AccOwner", ticket.getAccOwner());
-
+//2
     }
 
 }
