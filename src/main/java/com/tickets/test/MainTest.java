@@ -19,7 +19,7 @@ public class MainTest {
 /**
  * Test JavaTest class
  */
-    Result resultJavaTest = JUnitCore.runClasses(JavaTest.class, TicketControllerTest.class);
+    Result resultJavaTest = JUnitCore.runClasses(JavaTest.class);
 
     for (Failure failure : resultJavaTest.getFailures()) {
         System.out.println(failure.toString());

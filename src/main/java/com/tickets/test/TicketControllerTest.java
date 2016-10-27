@@ -1,13 +1,24 @@
 package com.tickets.test;
 
+import com.tickets.config.WebSecurityConfig;
 import com.tickets.controller.TicketController;
+import com.tickets.validator.NewTicketValidator;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -15,20 +26,31 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 /**
  * Created by lukasz.homik on 2016-10-11.
  */
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration
+//@WebAppConfiguration
 public class TicketControllerTest {
 
-    @Autowired WebApplicationContext wac;
+    @Autowired WebApplicationContext context;
     @Autowired MockHttpSession session;
     @Autowired MockHttpServletRequest request;
-    @Autowired TicketController tc;
+    @Autowired TicketController ticketController;
+
+    @Mock
+    NewTicketValidator ticketFormValidator;
 
     private MockMvc mockMvc;
 
     @Before
     public void setup() {
 //        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-        tc = new TicketController();
-        this.mockMvc = standaloneSetup(tc).build();
+        ticketController = new TicketController();
+        this.mockMvc = standaloneSetup(ticketController).build();
+        when(ticketFormValidator.supports(any(Class.class))).thenReturn(true);
+//        mockMvc = MockMvcBuilders
+//                .webAppContextSetup(context)
+//                .apply(new WebSecurityConfig())
+//                .build();
     }
 
     @Test
@@ -40,6 +62,7 @@ public class TicketControllerTest {
 //                .andExpect(status().isOk())
 //                .andExpect(view().name("home"));
     }
+
     @Test
     public void testNewTicket() throws Exception {
         mockMvc.perform(get("/home/newTicket"))
