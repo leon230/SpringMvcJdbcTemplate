@@ -1,4 +1,3 @@
-package com.tickets.test;
 import com.tickets.model.Ticket;
 import junit.framework.Assert;
 import org.junit.Test;

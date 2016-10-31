@@ -1,5 +1,3 @@
-package com.tickets.test;
-
 import com.tickets.controller.TicketController;
 import junit.framework.TestResult;
 import junit.framework.TestSuite;

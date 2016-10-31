@@ -1,5 +1,3 @@
-package com.tickets.test;
-
 import com.tickets.config.WebSecurityConfig;
 import com.tickets.controller.TicketController;
 import com.tickets.validator.NewTicketValidator;
