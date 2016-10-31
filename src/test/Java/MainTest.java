@@ -10,7 +10,7 @@ import org.junit.runner.notification.Failure;
  */
 public class MainTest {
     public static void main(String[] args) {
-        TestSuite suite = new TestSuite(JavaTest.class, PermissionTest.class, TicketController.class);
+        TestSuite suite = new TestSuite(JavaTest.class, TicketController.class);
         TestResult result = new TestResult();
         suite.run(result);
         System.out.println("Number of test cases = " + result.runCount());

@@ -14,7 +14,7 @@
 		<java.version>1.7</java.version>
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<spring.security.version>4.1.1.RELEASE</spring.security.version>
-		<spring.test-mvc.version>1.0.0.M2</spring.test-mvc.version>
+		<spring.test-mvc.version>1.0.0.M1</spring.test-mvc.version>
 		<cglib.version>2.2.2</cglib.version>
 	</properties>
 
@@ -100,12 +100,11 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test-mvc</artifactId>
-			<version>${spring.test-mvc.version}</version>
-			<scope>test</scope>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework</groupId>-->
+			<!--<artifactId>spring-test-mvc</artifactId>-->
+			<!--<version>${spring.test-mvc.version}</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
