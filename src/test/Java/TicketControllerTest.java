@@ -2,10 +2,14 @@
 //import com.tickets.validator.NewTicketValidator;
 //import org.junit.Before;
 //import org.junit.Test;
+//import org.junit.runner.RunWith;
 //import org.mockito.Mock;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.mock.web.MockHttpServletRequest;
 //import org.springframework.mock.web.MockHttpSession;
+//import org.springframework.test.context.ContextConfiguration;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//import org.springframework.test.context.web.WebAppConfiguration;
 //import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.web.context.WebApplicationContext;
 //
@@ -18,9 +22,9 @@
 ///**
 // * Created by lukasz.homik on 2016-10-11.
 // */
-////@RunWith(SpringJUnit4ClassRunner.class)
-////@ContextConfiguration
-////@WebAppConfiguration
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration
+//@WebAppConfiguration
 //public class TicketControllerTest {
 //
 //    @Autowired WebApplicationContext context;

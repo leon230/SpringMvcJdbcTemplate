@@ -1,6 +1,3 @@
-import com.tickets.controller.TicketController;
-import junit.framework.TestResult;
-import junit.framework.TestSuite;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -10,24 +7,20 @@ import org.junit.runner.notification.Failure;
  */
 public class MainTest {
     public static void main(String[] args) {
-        TestSuite suite = new TestSuite(JavaTest.class, TicketController.class);
-        TestResult result = new TestResult();
-        suite.run(result);
-        System.out.println("Number of test cases = " + result.runCount());
+//        TestSuite suite = new TestSuite(JavaTest.class, TicketController.class);
+//        TestResult result = new TestResult();
+//        suite.run(result);
+//        System.out.println("Number of test cases = " + result.runCount());
 /**
- * Test JavaTest class
+ * Test Ticket class
  */
-    Result resultJavaTest = JUnitCore.runClasses(JavaTest.class);
+    Result resultTicketTest = JUnitCore.runClasses(TicketTest.class);
 
-    for (Failure failure : resultJavaTest.getFailures()) {
+    for (Failure failure : resultTicketTest.getFailures()) {
         System.out.println(failure.toString());
     }
 
-    System.out.println(resultJavaTest.wasSuccessful());
-/**
- * Test TicketControllerTest
- */
-
+    System.out.println(resultTicketTest.wasSuccessful());
 
     }
 }
