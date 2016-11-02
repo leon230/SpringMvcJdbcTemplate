@@ -32,7 +32,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Import(com.tickets.validator.TicketFilterValidator.class)
 public class TicketController {
 
-	//private final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private TicketDAO ticketDAO;
 	@Autowired
@@ -44,11 +43,6 @@ public class TicketController {
 	@Autowired
 	Filter ticketFilter;
 
-
-//	@InitBinder
-//	protected void initBinder(WebDataBinder binder) {
-//		binder.setValidator(userFormValidator);
-//	}
 	@InitBinder("TicketForm")
 	public void initBinder(WebDataBinder binder){
 		binder.setValidator(ticketFormValidator);
@@ -57,6 +51,9 @@ public class TicketController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
+/**
+ * Home mapping
+ */
 	@RequestMapping(value="/")
 	public String redirect(){
 		return "redirect:/home";
@@ -76,7 +73,10 @@ public class TicketController {
 
 		return model;
 	}
-	
+
+/**
+ * Ticket actions New,Edit,Delete,Save
+ */
 	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
 		Ticket newTicket = new Ticket();
@@ -108,7 +108,7 @@ public class TicketController {
 				ticketDAO.saveOrUpdate(ticket);
 			return new ModelAndView("redirect:/");
         }
-		//return "redirect:/";
+
     }
 	
 	@RequestMapping(value = "/home/deleteTicket", method = RequestMethod.GET)
@@ -131,7 +131,6 @@ public class TicketController {
 		return model;
 	}
 
-
 /**
  * Charts Data mappring
  */
@@ -151,6 +150,9 @@ public class TicketController {
 		return model;
 	}
 
+/**
+ * Ticket main table filter mapping and apply
+ */
 	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
 	public ModelAndView newFilter(ModelAndView model) {
 //		Filter filter = new Filter();
@@ -196,8 +198,8 @@ public class TicketController {
 			return new ModelAndView("redirect:/");
 		}
 	}
-/*
-	Export to file
+/**
+	Export to excel file
  */
 	@RequestMapping(value = "/home/export", method = RequestMethod.GET)
 	public String getFile(HttpServletRequest request,

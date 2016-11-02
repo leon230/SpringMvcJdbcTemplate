@@ -4,9 +4,6 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by lukasz.homik on 2016-08-24.
- */
 public class CustomTld extends SimpleTagSupport {
 
     public static boolean contains(List list, Object o){
@@ -14,7 +11,13 @@ public class CustomTld extends SimpleTagSupport {
         return list.contains(o);
     }
 
+    /**
+     * Change CSS class for main table.
+     * 4 return types :
+     * phigh, new, thstd, ood
+     */
     public static String changeClass(String strPriority, String strStatus, Date dateTo, Date dateFrom, Date dateOpen){
+        //Checking if ticket is not closed and there are 2 days left to solve it
         if (dateFrom != null & dateTo != null & !strStatus.equals("Closed") ) {
             long diff = dateTo.getTime() - dateFrom.getTime();
 
@@ -23,12 +26,15 @@ public class CustomTld extends SimpleTagSupport {
             }
 
         }
+        //High priority ticket and it is not closed
         if (strPriority.equals("High") & !strStatus.equals("Closed")){
                 return "phigh";
             }
+        //New ticket
         else if (dateOpen == null){
             return "new";
         }
+        //Closed ticket has standard
         else if(strStatus.equals("Closed")){
             return "thstd";
         }

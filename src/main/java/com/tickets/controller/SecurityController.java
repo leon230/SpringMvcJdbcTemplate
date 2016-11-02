@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class SecurityController {
-//Comment
+
     @Autowired
     Filter ticketFilter;
 /**
@@ -47,7 +47,9 @@ public class SecurityController {
 
     }
 
-    //for 403 access denied page
+/**for 403 access denied page
+ *
+ */
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public ModelAndView accesssDenied() {
 

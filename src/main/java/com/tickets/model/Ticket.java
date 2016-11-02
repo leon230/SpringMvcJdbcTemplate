@@ -1,17 +1,9 @@
 package com.tickets.model;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Leon on 2016-07-31.
- */
 public class Ticket {
     private int id;
     private String number;

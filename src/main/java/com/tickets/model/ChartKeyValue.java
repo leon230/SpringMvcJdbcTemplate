@@ -1,13 +1,10 @@
 package com.tickets.model;
 
-/**
- * Created by lukasz.homik on 2016-08-18.
- */
 public class ChartKeyValue {
     String key;
+    String value;
     String value2;
     String value3;
-    String value;
 
     public ChartKeyValue(){
 

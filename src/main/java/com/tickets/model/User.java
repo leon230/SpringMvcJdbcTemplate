@@ -1,8 +1,5 @@
 package com.tickets.model;
 
-/**
- * Created by Leon on 2016-08-04.
- */
 public class User {
     private int userId;
     private String userName;

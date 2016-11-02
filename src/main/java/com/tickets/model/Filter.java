@@ -36,6 +36,9 @@ public class Filter {
         return condition;
     }
 
+/**
+ * Set conditions for SQL query
+ */
     public void setCondition() {
 
         condition = "CLUSTER IN (";

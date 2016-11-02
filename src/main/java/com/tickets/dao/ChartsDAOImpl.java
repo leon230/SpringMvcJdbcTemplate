@@ -3,7 +3,6 @@ package com.tickets.dao;
 import com.tickets.model.ChartKeyValue;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +18,9 @@ public class ChartsDAOImpl implements ChartsDAO {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+/**
+ * Chart 1 fields retrieval
+ */
 
     @Override
     public List<ChartKeyValue> getProgressData() {
@@ -39,7 +41,7 @@ public class ChartsDAOImpl implements ChartsDAO {
         return DataList;
     }
 /**
- * Data for priority values simple chart
+ * Chart 2 fields retrieval
  */
     @Override
     public List<ChartKeyValue> getPriorityData() {
@@ -57,7 +59,9 @@ public class ChartsDAOImpl implements ChartsDAO {
         });
         return DataList;
     }
-
+/**
+ * Chart 3 fields retrieval
+ */
     @Override
     public List<ChartKeyValue> getPrioritySolveData() {
         String sql = "SELECT distinct concat(year(t.OPEN_DATE),month(t.OPEN_DATE)) as c_date" +

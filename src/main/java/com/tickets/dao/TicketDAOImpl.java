@@ -11,8 +11,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
- * An implementation of the TicketDAO interface.
- *
+ * Implementation of the TicketDAO interface.
  */
 public class TicketDAOImpl implements TicketDAO {
 

@@ -73,19 +73,5 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 			proxyMode=ScopedProxyMode.TARGET_CLASS)
 	public Filter getFilterConf(){return new Filter();
 	}
-//	@Bean
-//	public DefaultServletHttpRequestHandler defaultServletHttpRequestHandler() {
-//		return new DefaultServletHttpRequestHandler();
-
-	//default server map
-//	@Bean
-//	public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
-//		Map<String, String> urlMap = new ManagedMap<String, String>();
-//		urlMap.put("/**", "");
-//
-//		SimpleUrlHandlerMapping hm = new SimpleUrlHandlerMapping();
-//		hm.setUrlMap(urlMap);
-//		return hm;
-//	}
 
 }
