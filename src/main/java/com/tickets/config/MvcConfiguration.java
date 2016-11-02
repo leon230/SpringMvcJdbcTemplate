@@ -1,7 +1,6 @@
 package com.tickets.config;
 
 import javax.sql.DataSource;
-
 import com.tickets.dao.*;
 import com.tickets.model.Filter;
 import org.springframework.context.annotation.*;
@@ -20,7 +19,6 @@ import java.util.Map;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages="com.tickets")
-//@ComponentScan(basePackageClasses={com.tickets.controller.MemberController.class})
 @Import({ WebSecurityConfig.class })
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
@@ -33,12 +31,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
-	//@Override
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
-//	reloadableResourceBundleMessageSource.setBasename("/WEB-INF/messages/messages")‌​;
     @Bean public ResourceBundleMessageSource messageSource(){
         ResourceBundleMessageSource ResourceBundleMessageSource = new ResourceBundleMessageSource();
         ResourceBundleMessageSource.setBasename("messages");
