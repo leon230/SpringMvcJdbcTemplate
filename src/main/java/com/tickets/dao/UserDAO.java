@@ -1,7 +1,6 @@
 package com.tickets.dao;
 
 import com.tickets.model.User;
-
 import java.util.List;
 
 /**
@@ -10,8 +9,5 @@ import java.util.List;
 public interface UserDAO {
 
     public List<User> listuser(String userName);
-
-
-    //public void saveUpdateUser();
 
 }

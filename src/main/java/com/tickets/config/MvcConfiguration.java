@@ -1,5 +1,6 @@
 package com.tickets.config;
 
+import javax.sql.DataSource;
 import com.tickets.dao.*;
 import com.tickets.model.Filter;
 import org.springframework.context.annotation.*;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import javax.sql.DataSource;
+import java.util.Map;
 
 @Configuration
 @EnableWebMvc
@@ -30,7 +31,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
-//	@Override
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
@@ -45,10 +46,9 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://ticketsystem.ciao4vitmcqb.us-west-2.rds.amazonaws.com:3306/ticketsystem");
-//		dataSource.setUrl("jdbc:mysql://localhost:3306/ticketsystem");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/ticketsystem");
 		dataSource.setUsername("root");
-		dataSource.setPassword("rootpass");
+		dataSource.setPassword("");
 		
 		return dataSource;
 	}
