@@ -3,6 +3,8 @@ package com.tickets.config;
 import javax.sql.DataSource;
 import com.tickets.dao.*;
 import com.tickets.model.Filter;
+import com.tickets.service.FilterService;
+import com.tickets.service.FilterServiceImpl;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -13,8 +15,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
-import java.util.Map;
 
 @Configuration
 @EnableWebMvc
@@ -48,13 +48,13 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/ticketsystem");
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setPassword("root");
 		
 		return dataSource;
 	}
 	
 	@Bean
-	@Scope(value= WebApplicationContext.SCOPE_SESSION,
+	@Scope(value = WebApplicationContext.SCOPE_SESSION,
 			proxyMode=ScopedProxyMode.TARGET_CLASS)
 	public TicketDAO getTicketDAO() {
 		return new TicketDAOImpl(getDataSource());
@@ -73,5 +73,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 			proxyMode=ScopedProxyMode.TARGET_CLASS)
 	public Filter getFilterConf(){return new Filter();
 	}
+	@Bean
+	public FilterService filterService(){return new FilterServiceImpl();};
 
 }
