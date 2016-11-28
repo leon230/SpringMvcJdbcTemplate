@@ -1,7 +1,6 @@
 package com.tickets.controller;
 
-import com.tickets.model.Filter;
-import com.tickets.model.Ticket;
+import com.tickets.service.FilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.ResourceBundle;
 
 /**
  * Created by lukasz.homik on 2016-09-05.
@@ -20,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class SecurityController {
 
     @Autowired
-    Filter ticketFilter;
+    FilterService filterService;
+    private ResourceBundle bunlde = ResourceBundle.getBundle("messages");
+
 /**
  * Security mapping
  */
@@ -30,17 +32,14 @@ public class SecurityController {
 
         ModelAndView model = new ModelAndView();
         if (error != null) {
-            model.addObject("error", "Invalid username and password!");
+            model.addObject("error", bunlde.getString("User.login.incorrect"));
         }
 
         if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
+            model.addObject("msg", bunlde.getString("User.logout"));
         }
-        Ticket t = new Ticket();
-        ticketFilter.setClusters(t.getClustersList());
-        ticketFilter.setPriorities(t.getPrioritiesList());
-        ticketFilter.setStatuses(t.getStatusesList());
 
+        filterService.InitFilter(); //Initialize default filter values
         model.setViewName("login");
 
         return model;
