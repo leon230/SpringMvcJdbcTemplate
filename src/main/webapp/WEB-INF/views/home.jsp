@@ -18,9 +18,9 @@
         <title>Ticket Manager Home</title>
     </head>
 
-    <c:url value="home/editTicket?id=" var="editTicket" />
-    <c:url value="home/deleteTicket?id=" var="deleteTicket" />
-    <c:url value="home/export" var="ExportData" />
+    <c:url value="/editTicket?id=" var="editTicket" />
+    <c:url value="/deleteTicket?id=" var="deleteTicket" />
+    <c:url value="/export" var="ExportData" />
 <div class = "headerbar">
 <jsp:include page="header.jsp" />
 </div>

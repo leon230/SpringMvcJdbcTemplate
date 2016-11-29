@@ -37,11 +37,14 @@ public class TicketController {
 	@Autowired
 	private ChartsDAO chartsDAO;
 	@Autowired
-	NewTicketValidator ticketFormValidator;
+	private NewTicketValidator ticketFormValidator;
 	@Autowired
-	TicketFilterValidator ticketFilterValidator;
+	private TicketFilterValidator ticketFilterValidator;
 	@Autowired
-	Filter ticketFilter;
+	private Filter ticketFilter;
+
+	private Calendar calendar = Calendar.getInstance();
+	private List<Ticket> listTicket;
 
 	@InitBinder("TicketForm")
 	public void initBinder(WebDataBinder binder){
@@ -49,6 +52,10 @@ public class TicketController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+	@InitBinder
+		public void homeBinder(){
+		listTicket = ticketDAO.list(ticketFilter.getCondition());
 	}
 
 /**
@@ -62,10 +69,7 @@ public class TicketController {
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
 
-		List<Ticket> listTicket = ticketDAO.list(ticketFilter.getCondition());
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar cal = Calendar.getInstance();
-		model.addObject("currentDate",cal.getTime());
+		model.addObject("currentDate",calendar.getTime());
 		model.addObject("filter",ticketFilter);
 		model.addObject("listTicket", listTicket);
 		model.addObject("title", "Tickets list");
@@ -77,7 +81,7 @@ public class TicketController {
 /**
  * Ticket actions New,Edit,Delete,Save
  */
-	@RequestMapping(value = "/home/newTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "**/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
 		Ticket newTicket = new Ticket();
 		SimpleDateFormat printFormat = new SimpleDateFormat("yyyyMMdd_kkmmss");
@@ -93,7 +97,7 @@ public class TicketController {
 		return model;
 	}
 
-    @RequestMapping(value = "/home/saveTicket", method = RequestMethod.POST)
+    @RequestMapping(value = "**/saveTicket", method = RequestMethod.POST)
     public ModelAndView CheckForm(@ModelAttribute ("TicketForm") @Validated Ticket ticket, BindingResult result
 			, ModelAndView model) {
         if (result.hasErrors()) {
@@ -111,14 +115,14 @@ public class TicketController {
 
     }
 	
-	@RequestMapping(value = "/home/deleteTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "**/deleteTicket", method = RequestMethod.GET)
 	public ModelAndView deleteTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
 		ticketDAO.delete(ticketId);
 		return new ModelAndView("redirect:/");
 	}
 	
-	@RequestMapping(value = "/home/editTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "**/editTicket", method = RequestMethod.GET)
 	public ModelAndView editTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
 		Ticket ticket = ticketDAO.get(ticketId);
@@ -155,7 +159,6 @@ public class TicketController {
  */
 	@RequestMapping(value = "/filter**", method = RequestMethod.GET)
 	public ModelAndView newFilter(ModelAndView model) {
-//		Filter filter = new Filter();
 		List<String> clusters = new ArrayList<String>();
 		List<String> priorities = new ArrayList<String>();
 		List<String> statuses = new ArrayList<String>();
@@ -201,7 +204,7 @@ public class TicketController {
 /**
 	Export to excel file
  */
-	@RequestMapping(value = "/home/export", method = RequestMethod.GET)
+	@RequestMapping(value = "**/export", method = RequestMethod.GET)
 	public String getFile(HttpServletRequest request,
 						  HttpServletResponse response) throws IOException{
 		int BUFFER_SIZE = 4096;
@@ -210,7 +213,7 @@ public class TicketController {
 		String appPath = context.getRealPath("");
 		String filePath = "/Export.csv";
 		String fullPath = appPath + filePath;
-		List<Ticket> listTicket = ticketDAO.list(Filter.getCondition());
+
 
 		SaveToFile sv = new SaveToFile(listTicket,fullPath);
 		sv.saveFile();
@@ -251,30 +254,4 @@ public class TicketController {
 
 		return "redirect:/home";
 	}
-
-/**
- * TO DO
- */
-//		@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		dateFormat.setLenient(false);
-//		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-//	}
-//	@InitBinder
-//	public void binder(WebDataBinder binder) {
-//		binder.registerCustomEditor(Date.class, new DateEditor());
-//	}
-//	@InitBinder
-//	protected void initBinder(WebDataBinder binder) {
-//		binder.setValidator(sun.security.krb5.internal.Ticket);
-//	}
-
-
-
-//	@RequestMapping(value = "/saveTicket", method = RequestMethod.POST)
-//	public ModelAndView saveTicket(@ModelAttribute Ticket ticket) {
-//		ticketDAO.saveOrUpdate(ticket);
-//		return new ModelAndView("redirect:/");
-//	}
 }
