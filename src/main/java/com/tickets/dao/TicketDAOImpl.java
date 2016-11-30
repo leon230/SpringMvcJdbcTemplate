@@ -9,10 +9,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * Implementation of the TicketDAO interface.
  */
+@Repository
 public class TicketDAOImpl implements TicketDAO {
 
 	private JdbcTemplate jdbcTemplate;

@@ -3,6 +3,7 @@ package com.tickets.dao;
 import com.tickets.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Leon on 2016-08-04.
  */
+@Repository
 public class UserDAOImpl implements UserDAO{
 
     private JdbcTemplate jdbcTemplate;

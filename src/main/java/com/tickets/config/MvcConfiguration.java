@@ -75,7 +75,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 			proxyMode=ScopedProxyMode.TARGET_CLASS)
 	public Filter getFilterConf(){return new Filter();
 	}
-	@Bean
-    FilterService filterService(){return new FilterServiceImpl();}
+//	@Bean
+//    FilterService filterService(){return new FilterServiceImpl();}
 
 }
