@@ -3,7 +3,6 @@ package com.tickets.dao;
 import com.tickets.model.ChartKeyValue;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -13,7 +12,6 @@ import java.util.List;
 /**
  * Created by lukasz.homik on 2016-08-18.
  */
-@Repository
 public class ChartsDAOImpl implements ChartsDAO {
 
     private JdbcTemplate jdbcTemplate;
