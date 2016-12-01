@@ -2,10 +2,10 @@ package com.tickets.config;
 
 import com.tickets.dao.*;
 import com.tickets.model.Filter;
-import com.tickets.service.FilterService;
-import com.tickets.service.FilterServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ViewResolver;
@@ -22,6 +22,9 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages="com.tickets")
 @Import({ WebSecurityConfig.class })
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
+
+	@Autowired
+	private Environment environment;
 
 	@Bean
 	public ViewResolver getViewResolver(){
@@ -47,10 +50,9 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//		dataSource.setUrl("jdbc:mysql://ticketsystem.ciao4vitmcqb.us-west-2.rds.amazonaws.com:3306/ticketsystem");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/ticketsystem");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
+		dataSource.setUrl(environment.getRequiredProperty("db.connectionURL"));
+		dataSource.setUsername(environment.getRequiredProperty("db.username"));
+		dataSource.setPassword(environment.getRequiredProperty("db.password"));
 		
 		return dataSource;
 	}
