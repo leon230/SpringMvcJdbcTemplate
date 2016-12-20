@@ -21,25 +21,20 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public List<User> listuser(String userName) {
-        String sql = "SELECT * FROM users u, user_roles ur WHERE u.username = ur.username AND u.username ='" + userName + "'";
-        List<User> listuser = jdbcTemplate.query(sql, new RowMapper<User>() {
+    public User getUser(String username){
+        String sql = "SELECT * FROM users u WHERE u.username ='" + username + "'";
 
-            @Override
+        return jdbcTemplate.queryForObject(sql,new RowMapper<User>() {
             public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                 User user = new User();
-                user.setUserId(rs.getInt("ID"));
+                user.setUserId(rs.getInt("USER_ID"));
                 user.setUserName(rs.getString("username"));
                 user.setUserPass(rs.getString("password"));
-                user.setUserRole(rs.getString("role"));
-
                 return user;
             }
-
         });
 
-        return listuser;
-    }
 
+    }
 
 }

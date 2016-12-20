@@ -8,6 +8,6 @@ import java.util.List;
  */
 public interface UserDAO {
 
-    public List<User> listuser(String userName);
+    public User getUser(String username);
 
 }
