@@ -1,5 +1,6 @@
 package com.tickets.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,13 @@ public class Ticket {
         initModelList();
     }
 
+    public Ticket(String number, String reportedBy, String tstatus){
+        SimpleDateFormat printFormat = new SimpleDateFormat("yyyyMMdd_kkmmss");
+        Date date = new Date();
+        this.number = number + printFormat.format(date);
+        this.reportedBy = reportedBy;
+        this.tstatus = tstatus;
+    }
     public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
                   String reportedBy, String priority, String tstatus, String accOwner, Date requestDate, Date dueDate) {
         this();

@@ -18,11 +18,11 @@ hr {
 }
 /* Main  table CSS */
 .trActionsDet{
-	visibility: collapse;
+	display: none;
 
 }
 .trActionsDetVis{
-	visibility: Visible;
+	display: table-row;
 
 }
 
@@ -43,7 +43,7 @@ hr {
 
 }
 .mainTable .ood{
-	background-color: #ff0000;
+	background-color: rgba(214, 41, 41, 0.7);
 }
 .mainTable .phigh{
 	background-color: #ff9999;

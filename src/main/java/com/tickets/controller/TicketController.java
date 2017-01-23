@@ -15,6 +15,7 @@ import com.tickets.dao.TicketDAO;
 import com.tickets.model.ChartKeyValue;
 import com.tickets.model.Filter;
 import com.tickets.model.Ticket;
+import com.tickets.utils.DownloadFile;
 import com.tickets.utils.SaveToFile;
 import com.tickets.validator.NewTicketValidator;
 import com.tickets.validator.TicketFilterValidator;
@@ -83,12 +84,8 @@ public class TicketController {
  */
 	@RequestMapping(value = "**/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
-		Ticket newTicket = new Ticket();
-		SimpleDateFormat printFormat = new SimpleDateFormat("yyyyMMdd_kkmmss");
-		Date date = new Date();
-		newTicket.setNumber(System.getProperty("user.name") + "_" + printFormat.format(date));
-		newTicket.setReportedBy(System.getProperty("user.name"));
-		newTicket.setTstatus("In queue");
+		Ticket newTicket = new Ticket(System.getProperty("user.name"),System.getProperty("user.name"),"In queue");
+
 		model.addObject("TicketForm", newTicket);
 		model.setViewName("TicketForm");
 		model.addObject("clusters", Ticket.getClustersList());
@@ -207,50 +204,7 @@ public class TicketController {
 	@RequestMapping(value = "**/export", method = RequestMethod.GET)
 	public String getFile(HttpServletRequest request,
 						  HttpServletResponse response) throws IOException{
-		int BUFFER_SIZE = 4096;
-//		ServletContext context = request.getServletContext();
-		ServletContext context = request.getSession().getServletContext();
-		String appPath = context.getRealPath("");
-		String filePath = "/Export.csv";
-		String fullPath = appPath + filePath;
-
-
-		SaveToFile sv = new SaveToFile(listTicket,fullPath);
-		sv.saveFile();
-
-		File downloadFile = new File(fullPath);
-		FileInputStream inputStream = new FileInputStream(downloadFile);
-
-		// get MIME type of the file
-		String mimeType = context.getMimeType(fullPath);
-		if (mimeType == null) {
-			// set to binary type if MIME mapping not found
-			mimeType = "application/octet-stream";
-		}
-
-		// set content attributes for the response
-		response.setContentType(mimeType);
-		response.setContentLength((int) downloadFile.length());
-
-		// set headers for the response
-		String headerKey = "Content-Disposition";
-		String headerValue = String.format("attachment; filename=\"%s\"",
-				downloadFile.getName());
-		response.setHeader(headerKey, headerValue);
-
-		// get output stream of the response
-		OutputStream outStream = response.getOutputStream();
-
-		byte[] buffer = new byte[BUFFER_SIZE];
-		int bytesRead = -1;
-
-		// write bytes read from the input stream into the output stream
-		while ((bytesRead = inputStream.read(buffer)) != -1) {
-			outStream.write(buffer, 0, bytesRead);
-		}
-
-		inputStream.close();
-		outStream.close();
+		DownloadFile.downloadCSV(request,response,listTicket);
 
 		return "redirect:/home";
 	}
