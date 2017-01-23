@@ -2,10 +2,8 @@ package com.tickets.config;
 
 import com.tickets.dao.*;
 import com.tickets.model.Filter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ViewResolver;
@@ -23,9 +21,6 @@ import javax.sql.DataSource;
 @Import({ WebSecurityConfig.class })
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
-	@Autowired
-	private Environment environment;
-
 	@Bean
 	public ViewResolver getViewResolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -35,7 +30,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
-	@Override
+//	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
@@ -53,7 +48,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 //		dataSource.setUrl("jdbc:mysql://ticketsystem.ciao4vitmcqb.us-west-2.rds.amazonaws.com:3306/ticketsystem");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/ticketsystem");
 		dataSource.setUsername("root");
-		dataSource.setPassword("root");
+		dataSource.setPassword("root123");
 		
 		return dataSource;
 	}
