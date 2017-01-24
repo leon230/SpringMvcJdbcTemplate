@@ -23,10 +23,10 @@ public class MockitoRunWith {
     Ticket ticket;
 
 
-    @Test
-    public void test1(){
-        assertNotNull(ticketDAO);
-    }
+//    @Test
+//    public void test1(){
+//        assertNotNull(ticketDAO);
+//    }
 
     @Test
     public void username_is_not_null(){
@@ -39,7 +39,7 @@ public class MockitoRunWith {
     public void InitTicketLists(){
         ticket = spy(new Ticket());
         ticket.initModelList();
-//        verify(ticket, times(1)).initModel2();
+        verify(ticket, times(1)).initModelList();
     }
 
 
