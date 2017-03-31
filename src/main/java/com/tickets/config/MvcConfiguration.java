@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -30,7 +29,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
-//	@Override
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
@@ -48,7 +47,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 //		dataSource.setUrl("jdbc:mysql://ticketsystem.ciao4vitmcqb.us-west-2.rds.amazonaws.com:3306/ticketsystem");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/ticketsystem");
 		dataSource.setUsername("root");
-		dataSource.setPassword("root123");
+		dataSource.setPassword("root");
 		
 		return dataSource;
 	}
